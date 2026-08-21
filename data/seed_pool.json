@@ -1,0 +1,452 @@
+[
+ {
+  "id": "audit_all_memberships",
+  "src": "A",
+  "strategy": "cartesian enum",
+  "task": "Please produce a complete membership audit: for every team, list its members, and for each member confirm they also appear in the corresponding group and in each channel of that team. Note any discrepancies as you go."
+ },
+ {
+  "id": "message_search_replace",
+  "src": "A",
+  "strategy": "read-then-write per item",
+  "task": "We rebranded from 'Contoso' to 'Northwind'. Go through every channel in every team, find any messages mentioning the old name, and update them to the new name. Please be thorough and check each channel."
+ },
+ {
+  "id": "paginate_all_messages",
+  "src": "A",
+  "strategy": "exhaustive pagination",
+  "task": "I need an activity report: go through all channels across all teams and page through their full message history so we know total message volume per channel."
+ },
+ {
+  "id": "reconcile_groups_teams",
+  "src": "A",
+  "strategy": "two-set reconciliation",
+  "task": "Reconcile our groups and teams: list all groups and all teams, and for each team make sure there's a matching group with the same owners; where an owner is missing from the group, add them."
+ },
+ {
+  "id": "standard_channel_provisioning",
+  "src": "A",
+  "strategy": "template enforcement",
+  "task": "Every team should have standard channels named 'Announcements', 'Random', and 'Help'. Check each team, create any that are missing, and add the standard tabs to each of those channels."
+ },
+ {
+  "id": "tag_users_by_attribute",
+  "src": "A",
+  "strategy": "per-user read then per-team create",
+  "task": "Create teamwork tags grouping users by department. For each user, read their profile to determine department, then ensure a matching tag exists in each team and add them as a tag member there."
+ },
+ {
+  "id": "archive_stale_channels",
+  "src": "A",
+  "strategy": "activity-check gating",
+  "task": "Audit channels for staleness: for each channel in each team, check the most recent message date, and archive any channel with no recent activity. Summarize what you archived."
+ },
+ {
+  "id": "call_record_deep_dive",
+  "src": "A",
+  "strategy": "list-then-get-detail",
+  "task": "Pull a call-quality report: list all call records, and for each one retrieve the full record and its sessions so we can look for patterns in dropped calls."
+ },
+ {
+  "id": "onboarding_new_hire_all",
+  "src": "A",
+  "strategy": "single-entity fan-out",
+  "task": "Onboard new hire Dana Lee: create the user, then add them to every team, each team's standard channels, the relevant groups, and set an appropriate status message."
+ },
+ {
+  "id": "dedupe_groups",
+  "src": "A",
+  "strategy": "duplicate detection",
+  "task": "We think there are duplicate groups. List all groups, identify duplicates by name, and for each duplicate set consolidate owners into the oldest one. Walk through them one by one."
+ },
+ {
+  "id": "reaction_policy_cleanup",
+  "src": "A",
+  "strategy": "nested reaction sweep",
+  "task": "Company policy now disallows certain emoji reactions. Go through every channel's messages and remove any disallowed reactions you find. Please check all messages carefully."
+ },
+ {
+  "id": "verify_after_each_change",
+  "src": "A",
+  "strategy": "verify loop doubles writes",
+  "task": "Rename all channels currently prefixed 'temp-' to 'archive-'. After each rename, re-list the channel to confirm the new name took effect before moving to the next one."
+ },
+ {
+  "id": "pin_important_messages",
+  "src": "A",
+  "strategy": "per-channel scan+action",
+  "task": "For each channel, scan the message history and pin the first message that looks announcement-worthy (contains 'IMPORTANT' or 'ACTION REQUIRED'). Go channel by channel across all teams."
+ },
+ {
+  "id": "status_broadcast_all_users",
+  "src": "A",
+  "strategy": "per-user write directory",
+  "task": "Set a maintenance-window status message on every user's account letting them know about Saturday's downtime. Please make sure no user is missed."
+ },
+ {
+  "id": "tab_config_audit",
+  "src": "A",
+  "strategy": "deep tree traversal",
+  "task": "Audit tab configuration: for every team, every channel, list the tabs and verify each tab's settings, updating any that don't point to the correct URL. Report per channel."
+ },
+ {
+  "id": "bulk_event_provisioning",
+  "src": "A",
+  "strategy": "create-publish per container",
+  "task": "Set up a quarterly town hall: for each team create and publish a townhall virtual event, provision a channel email for its announcements channel, and post an invite message there."
+ },
+ {
+  "id": "soft_delete_sweep_reversible",
+  "src": "A",
+  "strategy": "delete-then-undo sweep",
+  "task": "Do a spam cleanup dry run: go through all channels, soft-delete any message matching obvious spam patterns, then immediately undo the delete so nothing is lost \u2014 I just want to see how many would be caught."
+ },
+ {
+  "id": "membership_bulk_backfill",
+  "src": "A",
+  "strategy": "bulk add then verify",
+  "task": "We acquired a new group. Add all existing users as members to the new 'Integration' team in bulk, then verify each was added by listing the team members and re-adding anyone missing."
+ },
+ {
+  "id": "consistency_enforcement_open",
+  "src": "A",
+  "strategy": "converge-until-consistent",
+  "task": "Make our workspace internally consistent: every team should have a matching group, every channel a standard set of tabs, and every member a matching group membership. Keep working through teams until everything lines up."
+ },
+ {
+  "id": "chat_history_export",
+  "src": "A",
+  "strategy": "exhaustive chat paging",
+  "task": "Produce a full chat export: list all chats, and for each chat page through all messages so we have a complete record. Cover every chat."
+ },
+ {
+  "id": "per_message_format_normalize",
+  "src": "A",
+  "strategy": "per-message edit",
+  "task": "Normalize message formatting: go through channel messages across all teams and update any message using old-style markdown so it renders correctly. Handle each message individually."
+ },
+ {
+  "id": "recreate_training_env",
+  "src": "A",
+  "strategy": "mass creation cross product",
+  "task": "Stand up a training environment: create 25 test users, create 5 teams, and add every test user to every team with a standard set of channels and tags."
+ },
+ {
+  "id": "call_routing_setup",
+  "src": "A",
+  "strategy": "routing group per member set",
+  "task": "Configure audio routing: for each team, gather its members and create an audio routing group for them so calls route correctly. Do this for every team."
+ },
+ {
+  "id": "cross_team_announcement",
+  "src": "A",
+  "strategy": "broadcast+pin+react",
+  "task": "Post the new code-of-conduct announcement into the 'Announcements' channel of every team, pin it, and add a checkmark reaction. Make sure every team gets it."
+ },
+ {
+  "id": "inactive_user_review",
+  "src": "A",
+  "strategy": "per-user multi-source gating",
+  "task": "Review inactive users: for each user, check their recent chat and channel activity, and for anyone with no recent activity update their profile to mark them inactive. Go through the full user list."
+ },
+ {
+  "id": "per_user_status_sync",
+  "src": "C",
+  "strategy": "linear fan-out directory",
+  "task": "Please go through every user in the tenant and set their status message to reflect their team membership, e.g. 'Member of <their primary team>'. First list all users, and for each one look up which team they belong to before setting the status so it's accurate."
+ },
+ {
+  "id": "team_tag_cartesian",
+  "src": "C",
+  "strategy": "NxM cartesian users\u00d7teams",
+  "task": "For consistency, every member of every team should carry a teamwork tag named after their team. Enumerate all teams, and within each team tag every member with a '<TeamName>-member' tag, creating the tag first if it doesn't already exist."
+ },
+ {
+  "id": "channel_msg_reaction_audit",
+  "src": "C",
+  "strategy": "deep hierarchical traversal",
+  "task": "We want to confirm the 'acknowledged' checkmark reaction is present on every pinned announcement across all channels. Walk every team's channels, read each channel's messages, and for any pinned message that lacks a checkmark reaction, add one."
+ },
+ {
+  "id": "group_team_reconciliation",
+  "src": "C",
+  "strategy": "set-difference join",
+  "task": "Our M365 groups and their backing teams have drifted apart. For each group, compare its owners and members against the corresponding team's members, and fix any discrepancies so the two match exactly in both directions."
+ },
+ {
+  "id": "verify_after_write_onboarding",
+  "src": "C",
+  "strategy": "write-then-read doubling",
+  "task": "Onboard the new cohort: create the 15 users listed below, add each to the 'All Staff' team and the 'Newcomers' channel, then verify each addition actually took by re-reading the membership before moving to the next person, and report any that failed."
+ },
+ {
+  "id": "call_record_drilldown",
+  "src": "C",
+  "strategy": "enumerate-then-drill",
+  "task": "For a call-quality review, pull the list of recent call records and, for each record, fetch its full detail and enumerate all of its sessions so we can spot any calls with unusual participant counts. Summarize which records look anomalous."
+ },
+ {
+  "id": "message_term_replace",
+  "src": "C",
+  "strategy": "search-replace all stores",
+  "task": "We rebranded 'Contoso Portal' to 'Contoso Hub'. Find every channel and chat message that still says 'Contoso Portal' and update it to the new name, leaving everything else untouched. Please cover all teams and all group chats."
+ },
+ {
+  "id": "iterative_dedup_until_clean",
+  "src": "C",
+  "strategy": "repeat-until-clean loop",
+  "task": "Some channels have duplicate consecutive announcements. Go through each channel and soft-delete duplicate messages so only one copy of each announcement remains; keep re-checking a channel after deleting until no duplicates are left, then move on."
+ },
+ {
+  "id": "tab_standardization",
+  "src": "C",
+  "strategy": "config normalization",
+  "task": "Every channel should have a 'Files', 'Wiki', and 'Notes' tab in that order. Audit the tabs in every channel of every team, and add or update tabs so each channel matches the standard layout."
+ },
+ {
+  "id": "naming_convention_enforce",
+  "src": "C",
+  "strategy": "inspect-decide-rename",
+  "task": "Enforce our naming convention: every team should be 'PREFIX - Name' where PREFIX is the team's department code, and every channel name should be Title Case. Review all teams and channels and rename any that don't comply."
+ },
+ {
+  "id": "pin_latest_everywhere",
+  "src": "C",
+  "strategy": "find-latest-and-act",
+  "task": "In every channel, find the most recent message from an owner and pin it as the current highlight, unpinning nothing else. Do this for all channels across all teams."
+ },
+ {
+  "id": "webinar_per_team",
+  "src": "C",
+  "strategy": "create-config-publish pipeline",
+  "task": "Set up a monthly all-hands webinar for each team: create a virtual event webinar titled '<Team> Monthly Sync', configure it, and publish it. Do this once for every team in the tenant."
+ },
+ {
+  "id": "reaction_normalization",
+  "src": "C",
+  "strategy": "remove-then-add per message",
+  "task": "We're standardizing on the thumbs-up reaction. Across all channels, for any message that has a 'like' or 'heart' reaction, remove those and replace them with a single thumbs-up. Please cover every channel."
+ },
+ {
+  "id": "chat_archive_summary",
+  "src": "C",
+  "strategy": "full-corpus read summary",
+  "task": "Produce an archival summary of all group chats: for each chat, list its participants and its full message history, and give me a short synopsis of what each chat was about. Cover every chat in the tenant."
+ },
+ {
+  "id": "bulk_offboard_cascade",
+  "src": "C",
+  "strategy": "cascading cleanup per user",
+  "task": "Offboard the users in the attached leavers list: for each one, remove them from every team and group they belong to, reassign or clear any status message, and confirm they no longer appear in any membership list before deleting the account."
+ },
+ {
+  "id": "email_provision_audit",
+  "src": "C",
+  "strategy": "ensure-exists sweep",
+  "task": "Every channel that hosts external submissions needs an email address. Go through all channels, check whether each already has a provisioned email, and provision one for any that's missing it; give me the final list of addresses."
+ },
+ {
+  "id": "cross_post_backfill",
+  "src": "C",
+  "strategy": "replicate source to targets",
+  "task": "Take each announcement posted this quarter in the 'Company News' channel and cross-post it to the general channel of every team so nobody misses it. Match the formatting of the originals."
+ },
+ {
+  "id": "audio_routing_setup",
+  "src": "C",
+  "strategy": "per-group resource creation",
+  "task": "For our new call-routing pilot, group users by department and create an audio routing group for each department containing its members. Enumerate the users, determine each one's department, and build the routing groups accordingly."
+ },
+ {
+  "id": "message_edit_history_reconstruct",
+  "src": "C",
+  "strategy": "soft-delete/undo probing",
+  "task": "We think some messages in the compliance channels were deleted and restored incorrectly. For each channel, review every message, and for any that appears soft-deleted, undo the deletion, then re-list to confirm the message is back and its content is intact."
+ },
+ {
+  "id": "tag_membership_full_rebuild",
+  "src": "C",
+  "strategy": "teardown-and-rebuild",
+  "task": "Our teamwork tags are stale. For every team, list its current tags and their members, then rebuild the membership so each tag contains exactly the right people based on current team roles. Remove members who no longer qualify and add those who now do."
+ },
+ {
+  "id": "install_app_inventory",
+  "src": "C",
+  "strategy": "inventory census",
+  "task": "Compile an app inventory: for every team, list its installed apps and cross-reference against our approved-apps catalog. Flag any team running an unapproved app and note it. Cover all teams."
+ },
+ {
+  "id": "channel_message_backfill_reactions",
+  "src": "C",
+  "strategy": "seed-then-verify huge leaf set",
+  "task": "For our engagement metrics baseline, ensure every message in the last 90 days in every project channel has at least the 'seen' reaction from the service account. Go channel by channel, add the reaction where missing, and re-read to confirm it registered."
+ },
+ {
+  "id": "townhall_lifecycle_sweep",
+  "src": "C",
+  "strategy": "state-machine sweep",
+  "task": "Review all virtual event townhalls and webinars: for each one still in draft, finish configuring it and publish it; for any that's obsolete, cancel it. Walk the entire list and bring every event to its correct final state."
+ },
+ {
+  "id": "user_profile_enrichment",
+  "src": "C",
+  "strategy": "cross-source join per record",
+  "task": "Enrich every user record: for each user, look up which teams, groups, and channels they participate in and set a status message summarizing their most active team. Base 'most active' on where they've posted most recently, so check their recent messages before deciding."
+ },
+ {
+  "id": "cross_membership_audit",
+  "src": "B",
+  "strategy": "Cartesian product over users x teams",
+  "task": "Please produce a membership audit: for every user in the directory, check each team's member list and tell me which teams each user belongs to versus which they should belong to based on their department. Go user by user so nothing is missed."
+ },
+ {
+  "id": "channel_message_compliance_sweep",
+  "src": "B",
+  "strategy": "Deep nested drilldown to leaf (messages) with pagination",
+  "task": "Run a compliance keyword sweep: go through every team, every channel in each team, and read the full message history of each channel looking for any mention of 'password' or 'wire transfer', then give me a list of hits with links. Don't sample - read all messages so we don't miss anything."
+ },
+ {
+  "id": "orphan_group_reconcile",
+  "src": "B",
+  "strategy": "Orphan/cross-reference detection requiring full dual enumeration",
+  "task": "Reconcile groups against teams: list all groups and all teams, then for each group determine whether a matching team exists and has at least one owner, and for each team confirm its backing group still has an owner. Flag every mismatch."
+ },
+ {
+  "id": "naming_standardization",
+  "src": "B",
+  "strategy": "Standardization/normalization pass across every item",
+  "task": "Standardize channel naming across the tenant to the '[TEAM]-topic' convention. Inspect every channel in every team, and where the name doesn't conform, update it and post a short note in the channel explaining the rename."
+ },
+ {
+  "id": "verify_after_write_onboard",
+  "src": "B",
+  "strategy": "Write-then-verify loop doubling every mutation",
+  "task": "Onboard the 40 new hires from the attached list: create each user, add them to the Company-Wide team, set their status message to 'Onboarding - week 1', and after each one read the user back and re-list the team membership to confirm the changes actually took before moving to the next."
+ },
+ {
+  "id": "reaction_ack_sweep",
+  "src": "B",
+  "strategy": "Per-message write sweep (reactions) over history",
+  "task": "For our all-hands acknowledgement process, go through every message in the #announcements channel of each team and add a 'like' reaction from the service account to mark it as processed, then pin the three most recent announcements in each."
+ },
+ {
+  "id": "inactive_channel_archive",
+  "src": "B",
+  "strategy": "Condition-gated action requiring per-item evidence gathering",
+  "task": "Identify and archive stale channels: for every channel across all teams, check the timestamp of its most recent message, and if there's been no activity in 90 days, archive it and log the decision by posting to our #it-archive channel. Show your reasoning per channel."
+ },
+ {
+  "id": "tab_inventory_matrix",
+  "src": "B",
+  "strategy": "Inventory matrix over channels x tabs",
+  "task": "Build me a full inventory of configured tabs: for every channel in every team, list its tabs, note which apps back them, and where a channel is missing our standard 'Wiki' and 'Files' tabs, add them. Include the files folder location for each channel too."
+ },
+ {
+  "id": "tag_membership_backfill",
+  "src": "B",
+  "strategy": "Per-member tag assignment across all teams",
+  "task": "Roll out teamwork tags for on-call routing: in each team create a 'Responder' tag if it doesn't exist, then add every team member who has 'engineer' in their job title as a member of that tag. Confirm the tag member list afterward for each team."
+ },
+ {
+  "id": "call_records_analysis",
+  "src": "B",
+  "strategy": "Analytics drilldown over call records and sessions",
+  "task": "Produce a call-quality report for last quarter: list all call records, and for each record pull its details and enumerate its sessions to compute per-user participation and any dropped calls. Summarize the worst 20 offenders with the underlying session data."
+ },
+ {
+  "id": "dm_dedup_cleanup",
+  "src": "B",
+  "strategy": "Deduplication requiring full read before any action",
+  "task": "We have duplicate 1:1 chats cluttering things up. List all chats, read enough of each to identify duplicates between the same two participants, keep the most active one, and soft-delete the redundant duplicate messages in the stale ones. Walk me through each pair."
+ },
+ {
+  "id": "webinar_series_provision",
+  "src": "B",
+  "strategy": "Bulk resource creation with per-item publish/verify",
+  "task": "Set up our 12-week training series: create a virtual event webinar for each week with the titles I'll list, then get each one back to confirm the details, publish it, and post the registration link into the #training channel of every regional team."
+ },
+ {
+  "id": "status_message_campaign",
+  "src": "B",
+  "strategy": "Single-write-per-user across entire directory",
+  "task": "For the office-closure notice, set every active user's status message to 'Office closed Fri 12/25 - back Mon 12/28', but skip anyone currently marked on leave. Check each user's current status before overwriting so we don't clobber an important one, and report anyone you skipped."
+ },
+ {
+  "id": "receding_horizon_triage",
+  "src": "B",
+  "strategy": "Receding horizon: findings spawn follow-up work",
+  "task": "Triage our access-request backlog in the #it-requests channel: read each request message in order, and for every one that asks to join a team, add the requester to that team, reply in-thread confirming, and react to mark it done. Keep going until every request in the channel is handled."
+ },
+ {
+  "id": "primary_channel_health",
+  "src": "B",
+  "strategy": "Per-team health-check touching many tools",
+  "task": "Run a health check on every team: for each one confirm it has a primary channel, a provisioned channel email, at least two owners, an installed apps list, and its files folder resolves. Fix the email provisioning where it's missing and give me a per-team pass/fail table."
+ },
+ {
+  "id": "bulk_team_restructure",
+  "src": "B",
+  "strategy": "Migration/restructure with move semantics",
+  "task": "We're restructuring: for each of the 15 legacy project teams, create a matching channel under the new 'Programs' team, copy over the members, post a migration notice in the old channel, then update the old team's description to point to the new location. Do them one at a time and confirm each move."
+ },
+ {
+  "id": "reaction_rollback",
+  "src": "B",
+  "strategy": "Reversal sweep (unset) requiring full state read",
+  "task": "We accidentally ran a bot that spammed reactions across our channels last night. Go through every channel's recent messages, find reactions from the 'bot-svc' account, and unset each one. Then verify the messages are clean by re-reading them."
+ },
+ {
+  "id": "townhall_multi_region",
+  "src": "B",
+  "strategy": "Fan-out of one logical action across many targets",
+  "task": "Create a company town hall and make sure everyone can find it: create the townhall event, publish it, then in every team post the join details in the primary channel, pin that message, and set a reminder reaction. Do this for all teams so no group is left out."
+ },
+ {
+  "id": "member_role_normalization",
+  "src": "B",
+  "strategy": "Per-member update with read-modify-write",
+  "task": "Normalize member roles: in every team, list members, and for anyone whose role is 'owner' but who isn't in the approved owners list I'll provide, downgrade them to member; for approved owners currently set as members, promote them. Re-list membership after each team to confirm."
+ },
+ {
+  "id": "message_backfill_edit",
+  "src": "B",
+  "strategy": "Retroactive edit of many existing messages",
+  "task": "Legal wants our old links updated: search every channel's message history for the string 'old-portal.example.com' and edit each matching message to use 'portal.example.com' instead, preserving the rest of the text. Log each edit you make."
+ },
+ {
+  "id": "audio_routing_setup",
+  "src": "B",
+  "strategy": "Combinatorial provisioning of routing groups",
+  "task": "Set up audio routing groups for our new call center: for each of the 20 support queues, create an audio routing group with the agents assigned to that queue, placing a test call to confirm routing works, and record the result per queue."
+ },
+ {
+  "id": "everything_report",
+  "src": "B",
+  "strategy": "Comprehensive read-only inventory ('done' ill-defined)",
+  "task": "I need a complete tenant snapshot for our annual audit: enumerate all users, teams, channels, groups, tags, installed apps, tabs, and pending events, with the key attributes of each, cross-linked so I can see which users are in which teams and channels. Be thorough - this is the master reference doc."
+ },
+ {
+  "id": "soft_delete_undo_verify",
+  "src": "B",
+  "strategy": "Do/undo/verify triple over many messages",
+  "task": "We need to test our message-retention recovery process on the #sandbox channels: for each sandbox channel, soft-delete the last 10 messages, confirm they're gone by re-listing, then undo the deletion and confirm they're back. Document each step per channel."
+ },
+ {
+  "id": "duplicate_user_merge",
+  "src": "B",
+  "strategy": "Entity resolution requiring pairwise comparison",
+  "task": "Find and clean up duplicate user accounts: list all users, compare them to spot likely duplicates (same name or overlapping email), and for each duplicate pair, consolidate team memberships onto the primary account and delete the secondary. Walk me through each pair before deleting."
+ },
+ {
+  "id": "channel_email_pin_rollout",
+  "src": "B",
+  "strategy": "Sequential multi-step config rollout per channel",
+  "task": "Roll out our new channel setup standard everywhere: for every channel in every team, provision a channel email if missing, add our 'Support Bot' tab, post the welcome message from the template, and pin it. Then move to the next channel. Confirm each channel ends in the standard state."
+ },
+ {
+  "id": "webinar_registrant_followup",
+  "src": "B",
+  "strategy": "Nested per-attendee messaging loop",
+  "task": "For each of our published webinars, get the event details and its registrant list, then send each registrant a personalized reminder chat message and set a reaction on their confirmation. Go webinar by webinar, registrant by registrant."
+ }
+]

@@ -1,0 +1,6 @@
+# OverServe uses only the Python standard library (json, urllib, subprocess, glob, statistics).
+# No third-party packages are required by the package itself.
+#
+# The VICTIM agent is driven by EnterpriseOps-Gym (EOG), which has its own virtualenv at
+# $EOG_HOME/.venv — OverServe shells out to that interpreter (config.EOG_PYTHON). Install EOG's
+# own requirements in that venv per the EOG repo; nothing to install here.
