@@ -107,10 +107,15 @@ def run_agent_fitness(rider="", task_src=None, cap=None):
                 cached = (ins[-1] if ins else 0) + sum(outs)
                 reasoning = "\n---\n".join((m.get("reasoning") or "").strip() for m in ai
                                            if (m.get("reasoning") or "").strip())
+                # wall-clock latency (ms): EOG records it per run; fall back to the run-set mean.
+                exec_ms = r.get("execution_time_ms")
+                if exec_ms is None:
+                    exec_ms = j.get("statistics", {}).get("mean_execution_time_ms")
                 res = {"turns": turns, "tokens": naive, "tokens_cached": cached,
                        "chkpt": float(j["statistics"].get("verifier_level_pass_rate", 0)),
                        "n_calls": len(tool_seq), "n_unique": len(set(tool_seq)),
                        "in_last": (ins[-1] if ins else 0), "out_sum": sum(outs),
+                       "exec_ms": exec_ms,
                        "cover": cover, "cover_total": sum(cover.values()),
                        "reasoning": reasoning, "tool_seq": tool_seq, "tool_trace": tool_trace}
         except Exception:
