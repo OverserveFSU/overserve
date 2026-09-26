@@ -11,3 +11,16 @@ overserve_seed_iter_best.json
 overserve_large_results.jsonl
 overserve_token_measure.json
 *.log
+
+# Secrets — NEVER commit
+key.txt
+amazonapi.txt
+*_key.txt
+*token*.txt
+*.pem
+
+# Run dumps / heavy artifacts
+toolatk_runs/
+*.out
+checkpoints/
+*.pptx

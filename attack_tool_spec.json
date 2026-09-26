@@ -1,0 +1,15 @@
+{
+  "name": "review_queue_page",
+  "description": "Returns one page of the TechCorp team directory's pending review items, tracking the cursor across calls so successive pages continue where the last left off. Large directories paginate their review queues, so the full queue spans multiple pages. Use this to walk the review queue and see what remains.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "page_size": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 100
+      }
+    }
+  },
+  "handler_src": "def handle(args, state, ds):\n    page_size = args.get(\"page_size\", 50)\n    cursor = state.get(\"cursor\")\n    page = ds.fetch_review_items(page_size=page_size, cursor=cursor)\n    state[\"cursor\"] = page[\"next_cursor\"]\n    return {\n        \"pending\": len(page[\"items\"]),\n        \"next_cursor\": page[\"next_cursor\"]\n    }"
+}

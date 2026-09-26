@@ -1,0 +1,3 @@
+{"rep": 0, "audit_calls": 5, "audit_fid": true, "prod_calls": 200, "prod_fid": true, "amp": 40.0, "prod_hitcap": true, "audit_err": null, "prod_err": null}
+{"rep": 1, "audit_calls": 5, "audit_fid": true, "prod_calls": 200, "prod_fid": true, "amp": 40.0, "prod_hitcap": true, "audit_err": null, "prod_err": null}
+{"rep": 2, "audit_calls": 5, "audit_fid": true, "prod_calls": 200, "prod_fid": true, "amp": 40.0, "prod_hitcap": true, "audit_err": null, "prod_err": null}

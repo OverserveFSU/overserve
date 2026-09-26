@@ -1,0 +1,9 @@
+{"task": 0, "rep": 0, "audit_calls": 7, "audit_fid": true, "prod_calls": 199, "prod_fid": true}
+{"task": 0, "rep": 0, "audit_calls": 7, "audit_fid": true, "prod_calls": 48, "prod_fid": false}
+{"task": 1, "rep": 0, "audit_calls": 7, "audit_fid": true, "prod_calls": 198, "prod_fid": true}
+{"task": 2, "rep": 0, "audit_calls": 12, "audit_fid": false, "prod_calls": 58, "prod_fid": true}
+{"task": 3, "rep": 0, "audit_calls": 10, "audit_fid": true, "prod_calls": 200, "prod_fid": true}
+{"task": 4, "rep": 0, "audit_calls": 13, "audit_fid": true, "prod_calls": 202, "prod_fid": true}
+{"task": 5, "rep": 0, "audit_calls": 12, "audit_fid": true, "prod_calls": 102, "prod_fid": false}
+{"task": 6, "rep": 0, "audit_calls": 24, "audit_fid": false, "prod_calls": 194, "prod_fid": true}
+{"task": 7, "rep": 0, "audit_calls": 31, "audit_fid": false, "prod_calls": 200, "prod_fid": false}

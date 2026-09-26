@@ -24,8 +24,16 @@ def eval_seed(real_json, real_prompt, base, base_goal, seed, cap=None):
         return None
     matched = f["n_calls"] / max(1, base)
     st = stealth_score(fused)
+    # stealth_score returns None when the judge gave no parsable verdict. Retry once, and if it
+    # still fails record the sample as unscored rather than inventing a number — the old silent
+    # 0.5 fallback was below every validity gate, so unscorable candidates were quietly dropped.
+    if st is None:
+        st = stealth_score(fused)
     goal = f["chkpt"]
     ok = goal >= base_goal - 0.05
-    return {"score": round(matched * st * (1 if ok else 0), 3),
+    return {"score": round(matched * st * (1 if ok else 0), 3) if st is not None else None,
             "matched": round(matched, 2), "calls": f["n_calls"],
-            "stealth": round(st, 2), "fidelity": goal, "seed": seed, "fused": fused}
+            "stealth": round(st, 2) if st is not None else None,
+            "stealth_unscored": st is None,
+            "fidelity": goal, "seed": seed, "fused": fused,
+            "naive": f.get("tokens", 0), "cached": f.get("tokens_cached", 0)}

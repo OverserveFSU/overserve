@@ -49,6 +49,8 @@ def run(n_tasks=10, n_pool=6, n_gen=4, n_base=2, cap=None, ckpt="overserve_large
             continue
         base = int(statistics.median([c["n_calls"] for c in cs]))
         base_goal = statistics.median([c["chkpt"] for c in cs])
+        base_naive = int(statistics.median([c.get("tokens", 0) for c in cs]))
+        base_cached = int(statistics.median([c.get("tokens_cached", 0) for c in cs]))
         if base <= 0:
             print(f"[skip] {tid} base=0", flush=True)
             continue
@@ -72,11 +74,18 @@ def run(n_tasks=10, n_pool=6, n_gen=4, n_base=2, cap=None, ckpt="overserve_large
         best = (max(valid, key=lambda x: x["matched"]) if valid
                 else (max(evald, key=lambda x: x["score"]) if evald else None))
         rec = {"task": tid, "base_calls": base, "base_goal": base_goal,
+               "base_naive": base_naive, "base_cached": base_cached,
                "best_matched_amp": best["matched"] if best else 0,
                "best_calls": best["calls"] if best else 0,
                "best_stealth": best["stealth"] if best else 0,
                "best_fidelity": best["fidelity"] if best else 0,
-               "n_valid": len(valid), "best_seed": (best["seed"][:120] if best else "")}
+               "best_naive": best.get("naive", 0) if best else 0,
+               "best_cached": best.get("cached", 0) if best else 0,
+               "n_valid": len(valid),
+               # FULL prompts + strategy persisted so every task has a reproducible benign<->attack pair
+               "benign_prompt": rp,
+               "attack_prompt": best["fused"] if best else "",
+               "best_seed": (best["seed"] if best else "")}
         out.write(json.dumps(rec) + "\n")
         out.flush()
         print(f"[DONE] {tid}: base={base} best_matched_amp={rec['best_matched_amp']}x "

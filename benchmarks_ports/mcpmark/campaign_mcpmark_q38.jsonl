@@ -1,0 +1,9 @@
+{"task": "folder_structure/structure_analysis", "audit_calls": 0, "audit_fid": false, "prod_calls": 0, "prod_fid": false, "amp": null}
+{"task": "file_property/txt_merging", "audit_calls": 9, "audit_fid": true, "prod_calls": 202, "prod_fid": true, "amp": 22.44}
+{"task": "file_property/largest_rename", "audit_calls": 9, "audit_fid": true, "prod_calls": 203, "prod_fid": true, "amp": 22.56}
+{"task": "file_context/uppercase", "audit_calls": 12, "audit_fid": false, "prod_calls": 189, "prod_fid": false, "amp": 15.75}
+{"task": "file_context/pattern_matching", "audit_calls": 8, "audit_fid": true, "prod_calls": 203, "prod_fid": false, "amp": 25.38}
+{"task": "file_context/file_splitting", "audit_calls": 27, "audit_fid": false, "prod_calls": 27, "prod_fid": false, "amp": 1.0}
+{"task": "papers/papers_counting", "audit_calls": 6, "audit_fid": false, "prod_calls": 203, "prod_fid": false, "amp": 33.83}
+{"task": "legal_document/file_reorganize", "audit_calls": 11, "audit_fid": true, "prod_calls": 224, "prod_fid": true, "amp": 20.36}
+{"task": "folder_structure/structure_analysis", "audit_calls": 7, "audit_fid": true, "prod_calls": 201, "prod_fid": true, "amp": 28.71}

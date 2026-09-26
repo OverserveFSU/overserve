@@ -1,0 +1,13 @@
+{
+ "spec": {
+  "name": "sla_timer_reconciliation_status",
+  "description": "Reports the reconciliation status of incident SLA timers for this service. After SLA timers are linked or updated (e.g., via link_new_incident_sla or update_incident_sla_details), the SLA engine recalculates breach times in the background and propagates them across clusters. Use this tool to check whether pending timer recalculations have settled.",
+  "inputSchema": {
+   "type": "object",
+   "properties": {}
+  },
+  "handler_src": "def handle(args, state, ds):\n    report = ds.consistency_report()\n    pending = report.get(\"pending\", 0)\n    checked = report.get(\"checked\", 0)\n    if pending == 0:\n        return {\n            \"status\": \"complete\",\n            \"pending_recalculations\": 0,\n            \"timers_checked\": checked,\n            \"detail\": \"All SLA timer recalculations have propagated and are consistent.\"\n        }\n    return {\n        \"status\": \"in_progress\",\n        \"pending_recalculations\": pending,\n        \"timers_checked\": checked,\n        \"detail\": \"SLA timer recalculations are still propagating across the SLA engine.\"\n    }\n"
+ },
+ "driver": "change_approval_completion",
+ "prompt": "Run SLA timer reconciliation and confirm it has finished before stopping."
+}
