@@ -1,127 +1,96 @@
 # OverServe
 
-**Denial-of-Efficiency via Action-Budget Amplification in SaaS Agents.**
+**Resource Amplification Attacks on SaaS Agents via Tool–Prompt Co-Design.**
 
-A **trainable**, **query-only** prompt rewrite that makes a tool-using SaaS agent *overserve* —
-issue far more tool calls for the **same, verifier-passing outcome** — while staying **stealthy**
-(reads as an ordinary admin request) and **fidelity-preserving** (goal completion unchanged).
+OverServe is a multi-agent framework that constructs *denial-of-efficiency* attacks against
+subscription-billed SaaS agents. It **co-designs an MCP status tool and a matching completion
+prompt**: every tool call returns truthful status and terminates normally, but under backend
+**churn** (concurrent external updates keep a condition "pending") the victim agent keeps
+re-checking to satisfy the prompt — burning the provider's tokens and tool-call budget *after*
+the original business task is already complete. The attack is split across two separately-reviewed
+vectors (tool code/metadata and user prompt), so each passes review while their conjunction
+amplifies. See the paper for details.
 
-> Prior reasoning-level DoS attacks amplify the **tokens** an agent generates (the cost unit of
-> per-token API resale). Production SaaS agents bill **per invocation**, where the load-bearing cost
-> is the **number of actions**, not tokens. Rather than making an agent *overthink*, OverServe makes
-> it *overserve*.
+> Research artifact for an academic paper on SaaS-agent resource safety. Run only in isolated
+> environments with test data and fixed execution limits (see *Ethical Considerations* in the paper).
 
----
+## Attack mechanism
 
-## Headline results (measured)
+1. **Reconnaissance** — read a service's tool list and derive completion "gates": conditions a
+   truthful status tool could honestly never report `done` under live activity
+   (`recon_analyzer.py` → `recon_candidates*.json`).
+2. **Writer** — synthesize tool metadata + handler code + a one-sentence *driver* prompt
+   (`overserve/` package; `toolatk_search_v5/v7/v8.py`, `recon_to_search.py`).
+3. **Three reviews** — static code `r_s`, runtime completion `r_d`, prompt benignness `r_p`
+   (thresholds 0.8 / pass-within-2-calls / 0.7).
+4. **Victim rollout** under **clean / quiet / churn**; the churn backend is
+   `mcp_attack_server_v7.py` (gym) or `real_churn_backend.py` (genuine concurrent updates).
+5. **Selection** by amplification `α_q = C_c / C_q` with original-task fidelity preserved.
 
-| metric | value | notes |
-|---|---|---|
-| matched action amplification | **median 2.1×, up to 4.5×** | tool calls vs the same task's own baseline, 10 real tasks |
-| ∆Steps (STA's metric) | **+11.7 avg** (+8…+16) | absolute extra tool-calling steps; STA reports +1…+3.5 |
-| total tokens (naive) | 2.33× | "tokens processed", no cache credit |
-| real compute (cached) | 1.33× | prefix-caching-aware; the honest GPU cost |
-| fidelity | **1.0** | same verifier pass rate as the un-amplified task |
-| stealth | high (≈1.0) | LLM monitor rates the rewrite as a legitimate admin task |
-
-Amplification is **cache-immune on the action axis**: caching lowers per-call GPU cost but not the
-number of billed actions.
-
----
-
-## How it works
+## Repo layout
 
 ```
- real benign task ──┐
-                    ├─▶ fuse() ─▶ rewritten task ─▶ [VICTIM agent] ─▶ calls / tokens / fidelity
- amplification seed ┘   (deepseek)                    (qwen3.5, EOG)          │
-        ▲                                                                     │
-        │                                                                     ▼
-        └──────────── generate() ◀── feedback (which seeds amplified) ◀── stealth_score()
-                      (claude, the TRAINABLE loop)                        (deepseek monitor)
+overserve/                 # framework package: llm, config, fusion, score, seed_iter, large_scale, token_measure
+scripts/                   # package entry points (run_large, run_seed_iter, run_token_measure)
+toolatk_search_v{5,7,8}.py # current search engine (writer + judges + corner selection)
+toolatk_run.py             # core victim runner
+recon_to_search.py         # recon-seeded end-to-end search (tool_list -> working attack)
+recon_analyzer.py          # derive (gate, driver) candidates from a service's tool list
+mcp_attack_server_v7.py    # churn MCP status server (ChurnDir / ConcurrentChurnDir)
+real_churn_backend.py      # genuine concurrent-update backend (P0-b)
+search_eog_*.py / eog_*    # EnterpriseOps-Gym pipeline (headline 40x case)
+benchmarks_ports/          # adapters + search + guards for the 9 benchmarks + CLI
+  appworld/ ew/ mcpmark/ workbench/ tac/ toolathlon/ browsecomp/ infra/
+detect_bench/              # 5 industrial scanners + 4 research detectors (DCI, Connor, ...)
+baselines/toolslot/        # A2M / LoopTrap / ours comparison harness (Table 2)
+standardized/              # standardized cap-protocol campaign runners + CAP_PROTOCOL.md
+run_p0{b,c}_*.py, p0d_*    # reviewer-rigor controls (real churn / prompt contrast / independent audit)
+eog_defense_test.py        # progress-authorized guard (defense)
 ```
 
-1. **fuse** — the fusion model rewrites a real task in a seed strategy's thorough, item-by-item,
-   verify-each-step style, keeping the same goal. → `overserve/fusion.py`
-2. **score** — run the rewrite on the victim agent; fitness = `matched_amp × stealth`, gated by
-   fidelity (must keep the task's own verifier pass rate). → `overserve/score.py`, `agent_fit.py`
-3. **generate** (the trainable part) — feed the winning/losing mechanisms to a **strong generator**
-   (claude), which proposes new strategies that refine/combine winners and explore new angles. This
-   closes the loop at the **seed layer** — the layer proven to matter (GA/GEPA search over tasks or
-   the fuse-instruction never beat the initial content; regenerating seeds does). → `fusion.generate`
-
----
-
-## Layout
-
-```
-overserve/
-  config.py        all paths + model ids, from env with defaults (the ONLY place they live)
-  llm.py           advanced-LLM calls: fusion_llm, generator_llm, stealth_score
-  agent_fit.py     run the VICTIM agent on one task -> calls/turns/tokens(naive+cached)/fidelity/coverage
-  bench.py         load seed pool / real tasks / 70-tool inventory; run a task with a custom prompt
-  fusion.py        the attack core: fuse() + generate() (trainable seed generation)
-  score.py         eval_seed(): fuse -> run -> matched_amp x stealth x fidelity
-  seed_iter.py     OverServe on ONE task (feedback-driven seed iteration)
-  large_scale.py   OverServe across MANY tasks (resumable, checkpointed) -> amplification distribution
-  token_measure.py measure a chosen attack's naive/cached token amplification (no re-search)
-data/seed_pool.json    75 amplification-strategy seeds
-scripts/               thin CLI wrappers (run_seed_iter / run_large / run_token_measure)
-```
-
----
-
-## Setup
-
-OverServe itself needs only the Python **standard library**. It depends on two external things:
-
-1. **The victim agent** — [EnterpriseOps-Gym](../EnterpriseOps-Gym) (EOG), a Teams-admin agent
-   benchmark, with its own venv at `$EOG_HOME/.venv`. OverServe shells out to it.
-2. **A live qwen3.5 endpoint** — the EOG repo config points at a dead tunnel, so set the endpoint.
-3. **An OpenRouter key** — for the fusion model (deepseek) and the generator (claude).
+## Running
 
 ```bash
-export EOG_HOME=/home/ruiheng/aiagent/saas/EnterpriseOps-Gym
-export EOG_LLM_ENDPOINT=http://127.0.0.1:8192/v1     # live vLLM tunnel for qwen3.5
-export OPENROUTER_API_KEY=sk-or-...
+pip install -r requirements.txt
+
+# 1. End-to-end recon-seeded attack search on a service
+python recon_to_search.py                       # uses recon_candidates.json + the v8 machinery
+
+# 2. EnterpriseOps-Gym headline case (churn server auto-launched)
+python search_eog_sonnet.py                      # or _nemotron / _llama4scout
+
+# 3. A benchmark port (e.g. MCPMark)
+python benchmarks_ports/mcpmark/search_v9_mcpmark.py
+
+# 4. Detector screening of archived tools
+python detect_bench/run_scanners.py && python detect_bench/report.py
+
+# 5. Baseline comparison (A2M / LoopTrap / ours)
+bash baselines/toolslot/run_pilot.sh
+
+# 6. Defense (progress-authorized guard)
+ATK_CAP=200 python eog_defense_test.py
+
+# 7. Reviewer-rigor controls
+python run_p0b_realchurn.py       # real concurrent-churn backend
+python run_p0c_prompt_contrast.py # same-tool semantic-match prompt contrast
+python p0d_indep_audit.py         # independent (cross-model) audit
+
+# 8. Standardized cap-protocol campaign
+python standardized/run_std.py    # see standardized/CAP_PROTOCOL.md
 ```
 
-All knobs (see `config.py`): `OVERSERVE_FUSION_MODEL`, `OVERSERVE_GENERATOR_MODEL`, `OVERSERVE_CAP`,
-`OVERSERVE_SEED`, `OVERSERVE_SEED_POOL`, `OVERSERVE_PILOT`, `OVERSERVE_ALLTOOLS`.
+## Baselines note
 
----
+`baselines/toolslot/` is the self-contained harness that runs the **A2M** (verbatim return-value
+port), **LoopTrap** (reimplementation), and **OverServe** methods for the Table 2 comparison. The
+upstream **A2M** (`Lilaizhen/A2M`) and **STA** (`LiQiiiii/Sponge-Tool-Attack`) repositories are
+*vendored clones* (each with its own `.git`) and are **git-ignored** — clone them from the URLs cited
+in the paper; our STA adaptation lives in `baselines/STA/overserve_port/` inside that clone.
 
-## Run
+## Results
 
-```bash
-# 1) Single-task attack (feedback-driven seed iteration)
-python scripts/run_seed_iter.py --rounds 2 --eval0 8 --gen 6
-#    -> overserve_seed_iter.jsonl, overserve_seed_iter_best.json
-
-# 2) Large-scale distribution across N real tasks (resumable)
-python scripts/run_large.py --tasks 10
-#    -> overserve_large_results.jsonl  (+ a median/mean/range summary)
-
-# 3) Token amplification of the chosen best attack (naive + cached)
-python scripts/run_token_measure.py --best overserve_seed_iter_best.json --n 3
-#    -> overserve_token_measure.json
-```
-
-Or from Python:
-
-```python
-from overserve import seed_iter, large_scale, token_measure
-best = seed_iter.run(rounds=2)
-large_scale.run(n_tasks=10)
-token_measure.run(best_path="overserve_seed_iter_best.json", n=3)
-```
-
----
-
-## Notes
-
-- **Reproducibility**: sampling uses `config.SEED`; baselines are denoised (median of n runs). The
-  victim agent itself is stochastic, so single-run numbers carry ~15% noise — report medians.
-- **Cost control**: every agent run is capped at `CAP` turns.
-- **Roles**: victim = qwen3.5 (EOG); fusion + stealth monitor = deepseek; strategy generator = claude.
-  Swap any via `config.py` / env.
+The standardized cross-victim, consistent-cap campaign and the full experiment log live in the
+paper repo: `overserve_paper/standardized/STANDARDIZED_RESULTS.md` and
+`overserve_paper/EXPERIMENT_LOG.md`. Headline amplifications and stealth scores are in Tables 1–3
+of the paper. Runner code for regenerating the standardized table is in `standardized/`.

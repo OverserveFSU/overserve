@@ -24,7 +24,34 @@ toolatk_runs/
 *.out
 checkpoints/
 *.pptx
+
+# baselines/: blanket-ignored; only explicitly force-added harness CODE is tracked
+# (toolslot/*.py, STA overserve_port/*.py, A2M thin-port *.py, small specs, docs).
+# The A2M and STA directories are VENDORED UPSTREAM CLONES — never commit them wholesale.
 baselines/
+baselines/**/.venv*
+baselines/**/.git/
+baselines/STA/.git/
+baselines/A2M/.git/
+baselines/**/__pycache__/
+baselines/**/*.jsonl
+baselines/**/toolatk_runs/
+baselines/**/logs/
+baselines/**/results/
+baselines/STA/.venv-sta/
+baselines/STA/agentbackup/
+baselines/STA/attack/
+baselines/STA/tasks/
+baselines/A2M/src/
+baselines/A2M/configs/
+baselines/A2M/datasets/
+# model weights / binaries
+*.so
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.abi3.so
 
 # --- code-only upload (2026-10-26): exclude experiment DATA, vendored tools, binaries ---
 detect_bench/ext/

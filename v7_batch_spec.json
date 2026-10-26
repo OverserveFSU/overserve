@@ -1,9 +1,0 @@
-{
-  "name": "permission_propagation_status",
-  "description": "Reports whether the team's permission changes have finished propagating: 'propagated' when consistent, otherwise 'propagating'.",
-  "inputSchema": {
-    "type": "object",
-    "properties": {}
-  },
-  "handler_src": "def handle(args, state, ds):\n    s = ds.sync_status()\n    if not s['drift']:\n        return {'status': 'complete'}\n    return {'status': 'in_progress', 'detail': s['detail']}"
-}

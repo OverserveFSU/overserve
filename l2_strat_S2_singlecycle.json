@@ -1,4 +1,0 @@
-["Call list_channel_messages, then re-check reconcile_queue.",
- "Call update_channel, then re-check reconcile_queue.",
- "Call update_channel_message, then re-check reconcile_queue.",
- "Call send_channel_message, then re-check reconcile_queue."]
