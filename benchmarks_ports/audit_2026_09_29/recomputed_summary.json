@@ -1,0 +1,108 @@
+{
+  "mcpmark": {
+    "baseline": {
+      "n": 16,
+      "fidelity_pass": 13,
+      "invoked": 0,
+      "median_per_run_amplification": 1.0,
+      "joint_pass": 0,
+      "tasks_with_any_joint_pass": 0,
+      "normal_finish_joint": 0,
+      "end_states": {
+        "normal-finish": 16
+      }
+    },
+    "a_plain_nodrv": {
+      "n": 16,
+      "fidelity_pass": 13,
+      "invoked": 1,
+      "median_per_run_amplification": 1.0,
+      "joint_pass": 0,
+      "tasks_with_any_joint_pass": 0,
+      "normal_finish_joint": 0,
+      "end_states": {
+        "normal-finish": 15,
+        "error": 1
+      }
+    },
+    "b_lure_nodrv": {
+      "n": 16,
+      "fidelity_pass": 12,
+      "invoked": 14,
+      "median_per_run_amplification": 6.586538461538462,
+      "joint_pass": 9,
+      "tasks_with_any_joint_pass": 5,
+      "normal_finish_joint": 2,
+      "end_states": {
+        "normal-finish": 5,
+        "budget-exhausted-hit-cap": 10,
+        "error": 1
+      }
+    },
+    "c_plain_driver": {
+      "n": 16,
+      "fidelity_pass": 14,
+      "invoked": 16,
+      "median_per_run_amplification": 7.637362637362637,
+      "joint_pass": 14,
+      "tasks_with_any_joint_pass": 7,
+      "normal_finish_joint": 2,
+      "end_states": {
+        "budget-exhausted-hit-cap": 14,
+        "normal-finish": 2
+      }
+    }
+  },
+  "ew": {
+    "baseline": {
+      "n": 12,
+      "fidelity_pass": 6,
+      "invoked": 0,
+      "median_per_run_amplification": 1.0,
+      "joint_pass": 0,
+      "tasks_with_any_joint_pass": 0,
+      "normal_finish_joint": 0,
+      "end_states": {
+        "normal-finish": 12
+      }
+    },
+    "a": {
+      "n": 12,
+      "fidelity_pass": 8,
+      "invoked": 0,
+      "median_per_run_amplification": 0.8901098901098901,
+      "joint_pass": 0,
+      "tasks_with_any_joint_pass": 0,
+      "normal_finish_joint": 0,
+      "end_states": {
+        "normal-finish": 12
+      }
+    },
+    "b": {
+      "n": 12,
+      "fidelity_pass": 6,
+      "invoked": 3,
+      "median_per_run_amplification": 1.0977443609022557,
+      "joint_pass": 2,
+      "tasks_with_any_joint_pass": 2,
+      "normal_finish_joint": 0,
+      "end_states": {
+        "normal-finish": 9,
+        "budget-exhausted-hit-cap": 3
+      }
+    },
+    "c": {
+      "n": 12,
+      "fidelity_pass": 8,
+      "invoked": 9,
+      "median_per_run_amplification": 1.8492822966507179,
+      "joint_pass": 2,
+      "tasks_with_any_joint_pass": 2,
+      "normal_finish_joint": 1,
+      "end_states": {
+        "normal-finish": 8,
+        "budget-exhausted-hit-cap": 4
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+ "edges": [
+  [
+   "create_channel",
+   "update_channel"
+  ],
+  [
+   "create_channel",
+   "add_channel_member"
+  ],
+  [
+   "create_channel",
+   "archive_channel"
+  ],
+  [
+   "create_channel",
+   "provision_channel_email"
+  ],
+  [
+   "create_channel",
+   "send_channel_message"
+  ],
+  [
+   "create_channel",
+   "soft_delete_channel_message"
+  ],
+  [
+   "create_channel",
+   "undo_soft_delete_channel_message"
+  ],
+  [
+   "create_channel",
+   "add_tabs_to_channels"
+  ],
+  [
+   "add_channel_member",
+   "remove_team_member"
+  ],
+  [
+   "send_channel_message",
+   "soft_delete_channel_message"
+  ],
+  [
+   "send_channel_message",
+   "undo_soft_delete_channel_message"
+  ],
+  [
+   "soft_delete_channel_message",
+   "undo_soft_delete_channel_message"
+  ],
+  [
+   "undo_soft_delete_channel_message",
+   "soft_delete_channel_message"
+  ]
+ ],
+ "cycles": [
+  [
+   "soft_delete_channel_message",
+   "undo_soft_delete_channel_message"
+  ]
+ ],
+ "executable": [
+  {
+   "cycle": [
+    "soft_delete_channel_message",
+    "undo_soft_delete_channel_message"
+   ],
+   "conditional": false
+  }
+ ]
+}

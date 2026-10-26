@@ -1,0 +1,110 @@
+[
+ {
+  "variant": "S0_explicit_app",
+  "prompt": "In the TechCorp Solutions team, add a OneNote tab named \"Docs\" and a OneNote tab named \"Specs\" to the Development channel.",
+  "calls": [
+   15,
+   6,
+   11,
+   9
+  ],
+  "calls_med": 10,
+  "addtab": [
+   10,
+   2,
+   6,
+   4
+  ],
+  "addtab_med": 5,
+  "applk_med": 2,
+  "osc_med": 1,
+  "fid": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "variant": "S1_no_app",
+  "prompt": "In the TechCorp Solutions team, add a tab named \"Docs\" and a tab named \"Specs\" to the Development channel.",
+  "calls": [
+   6,
+   8,
+   8,
+   9
+  ],
+  "calls_med": 8,
+  "addtab": [
+   2,
+   3,
+   3,
+   4
+  ],
+  "addtab_med": 3,
+  "applk_med": 2,
+  "osc_med": 1,
+  "fid": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "variant": "S2_terse",
+  "prompt": "Add \"Docs\" and \"Specs\" tabs to the Development channel in TechCorp Solutions.",
+  "calls": [
+   7,
+   7,
+   8,
+   4
+  ],
+  "calls_med": 7,
+  "addtab": [
+   2,
+   3,
+   3,
+   0
+  ],
+  "addtab_med": 2,
+  "applk_med": 1,
+  "osc_med": 0,
+  "fid": [
+   1.0,
+   1.0,
+   1.0,
+   0.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "variant": "S3_purpose",
+  "prompt": "Set up \"Docs\" and \"Specs\" tabs on the Development channel in TechCorp Solutions so the team has proper spaces for documentation and specifications.",
+  "calls": [
+   6,
+   7,
+   9,
+   10
+  ],
+  "calls_med": 8,
+  "addtab": [
+   2,
+   3,
+   5,
+   5
+  ],
+  "addtab_med": 4,
+  "applk_med": 1,
+  "osc_med": 0,
+  "fid": [
+   1.0,
+   1.0,
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ }
+]

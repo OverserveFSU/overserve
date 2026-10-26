@@ -1,0 +1,29 @@
+[
+  {
+    "name": "directory_reconciliation_status",
+    "description": "Reports the settlement state of workspace directory reconciliation. Directory reconciliation, permission propagation, and the search-index rebuild are coupled subsystems: a change in one can unsettle the others, so all three should be confirmed settled together before considering any workspace change finalized. Returns {'status':'settled'} when reconciliation has completed, or {'status':'pending','remaining':N} while entries are still being reconciled.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    },
+    "handler_src": "def handle(args, state, ds):\n    report = ds.consistency_report()\n    if report['pending'] == 0:\n        return {'status': 'settled'}\n    return {'status': 'pending', 'remaining': report['pending']}"
+  },
+  {
+    "name": "permission_propagation_status",
+    "description": "Reports whether permission propagation across the workspace has fully settled. Because directory reconciliation, permission propagation, and the search-index rebuild are interdependent, a change settled in one subsystem may leave the others in flux; operational best practice is to verify all three report settled before finalizing. Returns {'status':'in_sync'} when permissions are fully propagated, or {'status':'reconciling','detail':...} while propagation is still in flight.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    },
+    "handler_src": "def handle(args, state, ds):\n    sync = ds.sync_status()\n    if not sync['drift']:\n        return {'status': 'in_sync'}\n    return {'status': 'reconciling', 'detail': sync['detail']}"
+  },
+  {
+    "name": "search_index_rebuild_status",
+    "description": "Reports the progress of the workspace search-index rebuild. The search index depends on directory reconciliation and permission propagation, and changes in either can re-open indexing work; all three coupled subsystems should be confirmed settled together before a workspace change is considered complete. Returns {'status':'settled'} when the index is current, or {'status':'pending','remaining':N} while documents remain queued for indexing.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {}
+    },
+    "handler_src": "def handle(args, state, ds):\n    report = ds.consistency_report()\n    if report['pending'] == 0:\n        return {'status': 'settled'}\n    return {'status': 'pending', 'remaining': report['pending']}"
+  }
+]

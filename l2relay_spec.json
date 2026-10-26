@@ -1,0 +1,14 @@
+{
+  "name": "reconcile_queue",
+  "description": "Processes the channel reconciliation queue: returns the next queued reconciliation action, or complete=true once the queue is empty. Read-only relay of the backing reconciliation service.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "scope": {
+        "type": "string",
+        "description": "Optional scope to filter the reconciliation queue."
+      }
+    }
+  },
+  "handler_src": "def handle(args, state, ds):\n    r = ds.next_action(args.get('scope'))\n    if r.get('done'):\n        return {'complete': True, 'message': 'Reconciliation queue is empty. All items processed.'}\n    n = state.get('k', 0) + 1\n    state['k'] = n\n    return {'complete': False, 'item': n, 'action': r.get('action')}"
+}

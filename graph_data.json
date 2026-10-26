@@ -1,0 +1,763 @@
+{
+ "n_traces": 72,
+ "nodes": [
+  {
+   "id": "READ(User)",
+   "op": "READ",
+   "count": 171
+  },
+  {
+   "id": "READ(Team)",
+   "op": "READ",
+   "count": 99
+  },
+  {
+   "id": "SEND(Message)",
+   "op": "SEND",
+   "count": 75
+  },
+  {
+   "id": "CREATE(Channel)",
+   "op": "CREATE",
+   "count": 53
+  },
+  {
+   "id": "CREATE(Tab)",
+   "op": "CREATE",
+   "count": 46
+  },
+  {
+   "id": "CREATE(Membership)",
+   "op": "CREATE",
+   "count": 44
+  },
+  {
+   "id": "READ(App)",
+   "op": "READ",
+   "count": 35
+  },
+  {
+   "id": "UPDATE(Channel)",
+   "op": "UPDATE",
+   "count": 29
+  },
+  {
+   "id": "READ(CallRecord)",
+   "op": "READ",
+   "count": 23
+  },
+  {
+   "id": "READ(Channel)",
+   "op": "READ",
+   "count": 22
+  },
+  {
+   "id": "READ(Group)",
+   "op": "READ",
+   "count": 13
+  },
+  {
+   "id": "CREATE(Tag)",
+   "op": "CREATE",
+   "count": 11
+  },
+  {
+   "id": "CREATE(Chat)",
+   "op": "CREATE",
+   "count": 7
+  },
+  {
+   "id": "CREATE(Webinar)",
+   "op": "CREATE",
+   "count": 7
+  },
+  {
+   "id": "UPDATE(Webinar)",
+   "op": "UPDATE",
+   "count": 7
+  },
+  {
+   "id": "UPDATE(Group)",
+   "op": "UPDATE",
+   "count": 6
+  },
+  {
+   "id": "READ(Membership)",
+   "op": "READ",
+   "count": 6
+  },
+  {
+   "id": "DELETE(Membership)",
+   "op": "DELETE",
+   "count": 4
+  },
+  {
+   "id": "UPDATE(User)",
+   "op": "UPDATE",
+   "count": 4
+  },
+  {
+   "id": "CREATE(User)",
+   "op": "CREATE",
+   "count": 2
+  }
+ ],
+ "edges": [
+  {
+   "from": "READ(Team)",
+   "to": "CREATE(Channel)",
+   "traces": 46,
+   "objtypes": {
+    "Team": 46
+   }
+  },
+  {
+   "from": "READ(App)",
+   "to": "CREATE(Tab)",
+   "traces": 35,
+   "objtypes": {
+    "App": 35
+   }
+  },
+  {
+   "from": "CREATE(Tab)",
+   "to": "SEND(Message)",
+   "traces": 29,
+   "objtypes": {
+    "Team": 29,
+    "Channel": 29
+   }
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "CREATE(Tab)",
+   "traces": 24,
+   "objtypes": {
+    "Team": 17,
+    "Channel": 24
+   }
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(Channel)",
+   "traces": 22,
+   "objtypes": {
+    "Team": 22
+   }
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "SEND(Message)",
+   "traces": 22,
+   "objtypes": {
+    "Team": 22,
+    "Channel": 22
+   }
+  },
+  {
+   "from": "READ(Channel)",
+   "to": "UPDATE(Channel)",
+   "traces": 20,
+   "objtypes": {
+    "Team": 20,
+    "Channel": 20
+   }
+  },
+  {
+   "from": "READ(User)",
+   "to": "CREATE(Channel)",
+   "traces": 15,
+   "objtypes": {
+    "User": 15
+   }
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "CREATE(Membership)",
+   "traces": 10,
+   "objtypes": {
+    "Channel": 10,
+    "User": 7,
+    "Team": 10
+   }
+  },
+  {
+   "from": "READ(User)",
+   "to": "CREATE(Tag)",
+   "traces": 9,
+   "objtypes": {
+    "User": 9
+   }
+  },
+  {
+   "from": "SEND(Message)",
+   "to": "SEND(Message)",
+   "traces": 8,
+   "objtypes": {
+    "Team": 8,
+    "Channel": 8
+   }
+  },
+  {
+   "from": "READ(CallRecord)",
+   "to": "READ(CallRecord)",
+   "traces": 7,
+   "objtypes": {
+    "CallRecord": 7
+   }
+  },
+  {
+   "from": "CREATE(Chat)",
+   "to": "SEND(Message)",
+   "traces": 7,
+   "objtypes": {
+    "Chat": 7
+   }
+  },
+  {
+   "from": "CREATE(Tag)",
+   "to": "CREATE(Tab)",
+   "traces": 7,
+   "objtypes": {
+    "Team": 7
+   }
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "CREATE(Tag)",
+   "traces": 7,
+   "objtypes": {
+    "Team": 7
+   }
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "CREATE(Tab)",
+   "traces": 7,
+   "objtypes": {
+    "Team": 7,
+    "Channel": 7
+   }
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "CREATE(Membership)",
+   "traces": 7,
+   "objtypes": {
+    "Team": 7,
+    "Channel": 7
+   }
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "CREATE(Channel)",
+   "traces": 7,
+   "objtypes": {
+    "Team": 7
+   }
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "CREATE(Membership)",
+   "traces": 7,
+   "objtypes": {
+    "Channel": 7,
+    "Team": 7
+   }
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "SEND(Message)",
+   "traces": 7,
+   "objtypes": {
+    "Team": 7,
+    "Channel": 7
+   }
+  },
+  {
+   "from": "CREATE(Webinar)",
+   "to": "UPDATE(Webinar)",
+   "traces": 7,
+   "objtypes": {
+    "Webinar": 7
+   }
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "CREATE(Tab)",
+   "traces": 6,
+   "objtypes": {
+    "Channel": 6,
+    "Team": 6
+   }
+  },
+  {
+   "from": "READ(Group)",
+   "to": "UPDATE(Group)",
+   "traces": 6,
+   "objtypes": {
+    "Group": 6
+   }
+  },
+  {
+   "from": "CREATE(Tab)",
+   "to": "CREATE(Tab)",
+   "traces": 5,
+   "objtypes": {
+    "Team": 5,
+    "Channel": 5,
+    "App": 3
+   }
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "UPDATE(Channel)",
+   "traces": 5,
+   "objtypes": {
+    "Channel": 5,
+    "Team": 5
+   }
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(Membership)",
+   "traces": 4,
+   "objtypes": {
+    "Team": 4
+   }
+  },
+  {
+   "from": "READ(Membership)",
+   "to": "DELETE(Membership)",
+   "traces": 4,
+   "objtypes": {
+    "Team": 4,
+    "Membership": 4
+   }
+  },
+  {
+   "from": "READ(User)",
+   "to": "UPDATE(User)",
+   "traces": 3,
+   "objtypes": {
+    "User": 3
+   }
+  },
+  {
+   "from": "CREATE(Tab)",
+   "to": "UPDATE(Channel)",
+   "traces": 2,
+   "objtypes": {
+    "Channel": 2,
+    "Team": 2
+   }
+  },
+  {
+   "from": "CREATE(Tag)",
+   "to": "SEND(Message)",
+   "traces": 2,
+   "objtypes": {
+    "Team": 2
+   }
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "CREATE(Tag)",
+   "traces": 2,
+   "objtypes": {
+    "Team": 2
+   }
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "SEND(Message)",
+   "traces": 2,
+   "objtypes": {
+    "Channel": 2
+   }
+  },
+  {
+   "from": "READ(Channel)",
+   "to": "CREATE(Membership)",
+   "traces": 2,
+   "objtypes": {
+    "Channel": 2,
+    "Team": 2
+   }
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "CREATE(Tag)",
+   "traces": 2,
+   "objtypes": {
+    "Team": 2
+   }
+  },
+  {
+   "from": "CREATE(User)",
+   "to": "CREATE(Tag)",
+   "traces": 2,
+   "objtypes": {
+    "User": 2
+   }
+  },
+  {
+   "from": "READ(Membership)",
+   "to": "READ(Membership)",
+   "traces": 1,
+   "objtypes": {
+    "Team": 1
+   }
+  }
+ ],
+ "temporal_edges": [
+  {
+   "from": "READ(User)",
+   "to": "CREATE(Channel)",
+   "traces": 45
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(User)",
+   "traces": 35
+  },
+  {
+   "from": "READ(App)",
+   "to": "CREATE(Tab)",
+   "traces": 33
+  },
+  {
+   "from": "CREATE(Tab)",
+   "to": "SEND(Message)",
+   "traces": 29
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(Channel)",
+   "traces": 22
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "SEND(Message)",
+   "traces": 22
+  },
+  {
+   "from": "READ(Channel)",
+   "to": "UPDATE(Channel)",
+   "traces": 15
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "READ(App)",
+   "traces": 13
+  },
+  {
+   "from": "READ(Team)",
+   "to": "CREATE(Channel)",
+   "traces": 9
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "READ(User)",
+   "traces": 9
+  },
+  {
+   "from": "SEND(Message)",
+   "to": "CREATE(Call)",
+   "traces": 8
+  },
+  {
+   "from": "READ(CallRecord)",
+   "to": "READ(User)",
+   "traces": 8
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "CREATE(Tag)",
+   "traces": 7
+  },
+  {
+   "from": "CREATE(Tag)",
+   "to": "CREATE(Chat)",
+   "traces": 7
+  },
+  {
+   "from": "SEND(Message)",
+   "to": "READ(App)",
+   "traces": 7
+  },
+  {
+   "from": "CREATE(Chat)",
+   "to": "SEND(Message)",
+   "traces": 7
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "READ(App)",
+   "traces": 7
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "SEND(Message)",
+   "traces": 7
+  },
+  {
+   "from": "CREATE(Webinar)",
+   "to": "UPDATE(Webinar)",
+   "traces": 7
+  },
+  {
+   "from": "SEND(Message)",
+   "to": "CREATE(Webinar)",
+   "traces": 7
+  },
+  {
+   "from": "READ(User)",
+   "to": "CREATE(Membership)",
+   "traces": 7
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "READ(Group)",
+   "traces": 6
+  },
+  {
+   "from": "UPDATE(Group)",
+   "to": "READ(App)",
+   "traces": 6
+  },
+  {
+   "from": "READ(Group)",
+   "to": "UPDATE(Group)",
+   "traces": 6
+  },
+  {
+   "from": "READ(Channel)",
+   "to": "READ(User)",
+   "traces": 5
+  },
+  {
+   "from": "READ(User)",
+   "to": "UPDATE(Channel)",
+   "traces": 5
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "CREATE(Membership)",
+   "traces": 5
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "READ(User)",
+   "traces": 5
+  },
+  {
+   "from": "READ(CallRecord)",
+   "to": "READ(Team)",
+   "traces": 5
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "CREATE(Tab)",
+   "traces": 4
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(Membership)",
+   "traces": 4
+  },
+  {
+   "from": "READ(Membership)",
+   "to": "READ(User)",
+   "traces": 4
+  },
+  {
+   "from": "READ(User)",
+   "to": "READ(Membership)",
+   "traces": 4
+  },
+  {
+   "from": "READ(User)",
+   "to": "DELETE(Membership)",
+   "traces": 3
+  },
+  {
+   "from": "UPDATE(Channel)",
+   "to": "CREATE(Tag)",
+   "traces": 2
+  },
+  {
+   "from": "CREATE(Tag)",
+   "to": "SEND(Message)",
+   "traces": 2
+  },
+  {
+   "from": "CREATE(Tab)",
+   "to": "UPDATE(Channel)",
+   "traces": 2
+  },
+  {
+   "from": "CREATE(Membership)",
+   "to": "CREATE(Tag)",
+   "traces": 2
+  },
+  {
+   "from": "CREATE(User)",
+   "to": "READ(Team)",
+   "traces": 2
+  },
+  {
+   "from": "READ(Channel)",
+   "to": "CREATE(Membership)",
+   "traces": 2
+  },
+  {
+   "from": "READ(App)",
+   "to": "CREATE(Channel)",
+   "traces": 2
+  },
+  {
+   "from": "READ(CallRecord)",
+   "to": "CREATE(Channel)",
+   "traces": 2
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(CallRecord)",
+   "traces": 2
+  },
+  {
+   "from": "READ(User)",
+   "to": "READ(CallRecord)",
+   "traces": 2
+  },
+  {
+   "from": "READ(User)",
+   "to": "UPDATE(User)",
+   "traces": 2
+  },
+  {
+   "from": "CREATE(Channel)",
+   "to": "CREATE(Membership)",
+   "traces": 2
+  },
+  {
+   "from": "READ(Group)",
+   "to": "READ(Team)",
+   "traces": 1
+  },
+  {
+   "from": "READ(Team)",
+   "to": "READ(Group)",
+   "traces": 1
+  },
+  {
+   "from": "READ(User)",
+   "to": "READ(App)",
+   "traces": 1
+  },
+  {
+   "from": "UPDATE(User)",
+   "to": "DELETE(Membership)",
+   "traces": 1
+  },
+  {
+   "from": "READ(Membership)",
+   "to": "UPDATE(User)",
+   "traces": 1
+  },
+  {
+   "from": "DELETE(Membership)",
+   "to": "UPDATE(User)",
+   "traces": 1
+  },
+  {
+   "from": "READ(Membership)",
+   "to": "DELETE(Membership)",
+   "traces": 1
+  },
+  {
+   "from": "READ(User)",
+   "to": "READ(Team)",
+   "traces": 1
+  }
+ ],
+ "hub_edges_nohub": {
+  "CREATE(Channel)|CREATE(Tab)": 24,
+  "CREATE(Tab)|CREATE(Tab)": 5,
+  "CREATE(Tab)|UPDATE(Channel)": 2,
+  "READ(User)|CREATE(Tag)": 9,
+  "UPDATE(Channel)|SEND(Message)": 2,
+  "READ(Channel)|CREATE(Membership)": 2,
+  "CREATE(User)|CREATE(Tag)": 2,
+  "READ(User)|CREATE(Channel)": 15,
+  "READ(App)|CREATE(Tab)": 35,
+  "CREATE(Tab)|SEND(Message)": 29,
+  "READ(CallRecord)|READ(CallRecord)": 7,
+  "CREATE(Channel)|SEND(Message)": 22,
+  "CREATE(Chat)|SEND(Message)": 7,
+  "SEND(Message)|SEND(Message)": 8,
+  "READ(Channel)|UPDATE(Channel)": 20,
+  "UPDATE(Channel)|CREATE(Membership)": 7,
+  "CREATE(Membership)|CREATE(Tab)": 7,
+  "READ(Group)|UPDATE(Group)": 6,
+  "UPDATE(Channel)|CREATE(Tab)": 6,
+  "CREATE(Channel)|CREATE(Membership)": 7,
+  "CREATE(Membership)|CREATE(Membership)": 10,
+  "CREATE(Membership)|SEND(Message)": 7,
+  "CREATE(Webinar)|UPDATE(Webinar)": 7,
+  "UPDATE(Channel)|UPDATE(Channel)": 5,
+  "READ(Membership)|DELETE(Membership)": 4
+ },
+ "hubs": [
+  "Team:team_techcorp_001",
+  "User:bob.smith"
+ ],
+ "latent_cycles_full": [
+  [
+   "CREATE(Tab)",
+   "UPDATE(Channel)"
+  ],
+  [
+   "CREATE(Channel)",
+   "CREATE(Tab)",
+   "UPDATE(Channel)"
+  ],
+  [
+   "CREATE(Membership)",
+   "CREATE(Tab)",
+   "UPDATE(Channel)"
+  ]
+ ],
+ "latent_cycles_nohub": [
+  [
+   "CREATE(Tab)",
+   "UPDATE(Channel)"
+  ],
+  [
+   "CREATE(Membership)",
+   "CREATE(Tab)",
+   "UPDATE(Channel)"
+  ]
+ ],
+ "stats": {
+  "temporal": {
+   "edges": 64,
+   "cycles": 33,
+   "latent": 28
+  },
+  "provenance": {
+   "edges": 54,
+   "cycles": 7,
+   "latent": 7
+  },
+  "nohub": {
+   "edges": 27,
+   "cycles": 2,
+   "latent": 2
+  }
+ },
+ "tools_used": 25,
+ "tools_total": 70,
+ "events": 680
+}

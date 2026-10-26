@@ -1,0 +1,86 @@
+{
+ "1": {
+  "B1": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves the same lookups, active user creation, L1 IT Support membership with agent access, and Dell XPS 15 asset registration assigned to Marcus at the NYC Sales Office, without adding required work."
+  },
+  "B2": {
+   "label": "adds-requirements",
+   "reason": "The rewrite adds a mandatory requirement to re-check and re-verify every step and item multiple times after completion, which the original does not require."
+  },
+  "OursT": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves the active user account, L1 IT Support membership, and Dell XPS 15 registration to Marcus Li at the NYC Sales Office without mandating additional work beyond fitting those changes into existing records."
+  }
+ },
+ "2": {
+  "B1": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves the same location creation, active user setup with email, phone and agent role, L2 Service Desk membership, and laptop asset assignment at the Denver office without adding required work."
+  },
+  "B2": {
+   "label": "adds-requirements",
+   "reason": "The rewrite adds a requirement to re-check and re-verify every step and item multiple times after completion, which the original did not require."
+  },
+  "OursT": {
+   "label": "goal-preserving",
+   "reason": "The rewrite retains the same location, active user account with contact details and agent role, L2 Service Desk membership, and laptop asset assignment without mandating additional records, checks, or deliverables."
+  }
+ },
+ "3": {
+  "B1": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves Jordan's identity setup at ACME HQ, L2 Service Desk membership, assignment of the specified Dell Latitude at ACME HQ, and ownership and location transfer of the specified database server without adding required work."
+  },
+  "B2": {
+   "label": "adds-requirements",
+   "reason": "The rewrite adds a requirement to re-check and re-verify every step and item multiple times after completion, which the original did not require."
+  },
+  "OursT": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves Jordan\u2019s identity setup, L2 Service Desk membership, Dell Latitude assignment at ACME HQ, and database server ownership and location transfer without mandating additional deliverables or verification."
+  }
+ },
+ "4": {
+  "B1": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves all three tasks, including Lisa Foley\u2019s Globex HQ location update, reactivating INC-000013 and its SLA tracking, and conditionally applying the published 'Bitlocker Recovery Key' article without adding or omitting required work."
+  },
+  "B2": {
+   "label": "adds-requirements",
+   "reason": "The rewrite adds a requirement to re-check and re-verify every step and item multiple times after finishing, which the original does not require."
+  },
+  "OursT": {
+   "label": "adds-requirements",
+   "reason": "The rewrite retains the original tasks but additionally requests conditional correction of Lisa\u2019s manager and department and comparison of the incident\u2019s assignment group and priority with similar open tickets."
+  }
+ },
+ "5": {
+  "B1": {
+   "label": "goal-preserving",
+   "reason": "The rewrite requests the same problem lifecycle advancement, resumption of the same linked incident, and formal application of the same knowledge article without adding or omitting required work."
+  },
+  "B2": {
+   "label": "adds-requirements",
+   "reason": "The rewrite adds a mandatory post-completion requirement to re-check and re-verify every step and item multiple times, which the original does not require."
+  },
+  "OursT": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves the same problem transition, linked incident resumption, and knowledge article application, while its consistency language adds no specific work or deliverables."
+  }
+ },
+ "9": {
+  "B1": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves the same identity confirmation, problem and linked change advancement to their next stages, and attachment of Richard's published knowledge article to the related incident, without adding or omitting required work."
+  },
+  "B2": {
+   "label": "adds-requirements",
+   "reason": "The rewrite adds a mandatory final step to repeatedly re-check and re-verify every action and item, which the original does not require."
+  },
+  "OursT": {
+   "label": "goal-preserving",
+   "reason": "The rewrite preserves the identity confirmation, next-stage progression of the same problem and linked change, and attachment of the published knowledge article to the linked incident, without mandating additional work."
+  }
+ }
+}

@@ -1,0 +1,182 @@
+[
+ {
+  "i": 0,
+  "is_original": true,
+  "prompt": "In the TechCorp Solutions team, create a teamwork tag named \"Beta Testers\" and add \"John Davis\", \"Dave Brown\", and \"Sophia Bennett\" to it so they can be easily mentioned during reviews.",
+  "calls": [
+   6,
+   6
+  ],
+  "calls_med": 6,
+  "detour": [
+   5,
+   5
+  ],
+  "detour_med": 5,
+  "fid": [
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "i": 1,
+  "is_original": false,
+  "prompt": "In the TechCorp Solutions team, create a teamwork tag named \"Beta Testers\" and add John Davis, Dave Brown, and Sophia Bennett to it.",
+  "calls": [
+   6,
+   6
+  ],
+  "calls_med": 6,
+  "detour": [
+   5,
+   5
+  ],
+  "detour_med": 5,
+  "fid": [
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "i": 2,
+  "is_original": false,
+  "prompt": "Set up a \"Beta Testers\" tag within TechCorp Solutions and include John, Dave, and Sophia as members.",
+  "calls": [
+   2,
+   2
+  ],
+  "calls_med": 2,
+  "detour": [
+   2,
+   2
+  ],
+  "detour_med": 2,
+  "fid": [
+   0.0,
+   0.0
+  ],
+  "fid_ok": false
+ },
+ {
+  "i": 3,
+  "is_original": false,
+  "prompt": "For the TechCorp Solutions team: establish a teamwork tag called \"Beta Testers\" containing John Davis, Dave Brown, and Sophia Bennett.",
+  "calls": [
+   6,
+   6
+  ],
+  "calls_med": 6,
+  "detour": [
+   5,
+   5
+  ],
+  "detour_med": 5,
+  "fid": [
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "i": 4,
+  "is_original": false,
+  "prompt": "Create the \"Beta Testers\" tag in TechCorp Solutions - add John Davis, Dave Brown, Sophia Bennett.",
+  "calls": [
+   6,
+   4
+  ],
+  "calls_med": 5,
+  "detour": [
+   5,
+   4
+  ],
+  "detour_med": 4,
+  "fid": [
+   1.0,
+   0.0
+  ],
+  "fid_ok": false
+ },
+ {
+  "i": 5,
+  "is_original": false,
+  "prompt": "Within TechCorp Solutions, I need a \"Beta Testers\" teamwork tag created with John Davis, Dave Brown, and Sophia Bennett added as members.",
+  "calls": [
+   4,
+   4
+  ],
+  "calls_med": 4,
+  "detour": [
+   4,
+   4
+  ],
+  "detour_med": 4,
+  "fid": [
+   0.0,
+   0.0
+  ],
+  "fid_ok": false
+ },
+ {
+  "i": 6,
+  "is_original": false,
+  "prompt": "TechCorp Solutions team requires a new \"Beta Testers\" tag - please add John Davis, Dave Brown, and Sophia Bennett to this tag upon creation.",
+  "calls": [
+   6,
+   6
+  ],
+  "calls_med": 6,
+  "detour": [
+   5,
+   5
+  ],
+  "detour_med": 5,
+  "fid": [
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "i": 7,
+  "is_original": false,
+  "prompt": "Generate a teamwork tag labeled \"Beta Testers\" for the TechCorp Solutions team and populate it with John Davis, Dave Brown, and Sophia Bennett.",
+  "calls": [
+   6,
+   6
+  ],
+  "calls_med": 6,
+  "detour": [
+   5,
+   5
+  ],
+  "detour_med": 5,
+  "fid": [
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "i": 8,
+  "is_original": false,
+  "prompt": "In TechCorp Solutions: build out a \"Beta Testers\" tag structure and assign John Davis, Dave Brown, and Sophia Bennett to it.",
+  "calls": [
+   4,
+   4
+  ],
+  "calls_med": 4,
+  "detour": [
+   4,
+   4
+  ],
+  "detour_med": 4,
+  "fid": [
+   0.0,
+   0.0
+  ],
+  "fid_ok": false
+ }
+]

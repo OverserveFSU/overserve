@@ -1,0 +1,62 @@
+[
+ {
+  "name": "ANCHOR benign baseline",
+  "scores": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "median": 1.0,
+  "chars": 845
+ },
+ {
+  "name": "ANCHOR explicit rider (opt2/winner)",
+  "scores": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "median": 1.0,
+  "chars": 845
+ },
+ {
+  "name": "struct-tab-update  (mined cycle)",
+  "scores": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "median": 1.0,
+  "chars": 268
+ },
+ {
+  "name": "interf-tabsync     (failed design)",
+  "scores": [
+   0.0,
+   1.0,
+   0.0
+  ],
+  "median": 0.0,
+  "chars": 529
+ },
+ {
+  "name": "ctrl2-idchain      (control)",
+  "scores": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "median": 1.0,
+  "chars": 484
+ },
+ {
+  "name": "interf2-idchain    (the one that cycles)",
+  "scores": [
+   0.5,
+   0.5,
+   0.5
+  ],
+  "median": 0.5,
+  "chars": 558
+ }
+]

@@ -1,0 +1,56 @@
+[
+ {
+  "variant": "explicit",
+  "prompt": "In the TechCorp Solutions team, create a channel called \"Ops Mirror\" with the description \"Development team discussions and updates\".",
+  "plen": 133,
+  "calls": [
+   3,
+   3,
+   3
+  ],
+  "calls_med": 3,
+  "reads_med": 2,
+  "fid": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "variant": "deep_desc",
+  "prompt": "In the TechCorp Solutions team, create a channel called \"Ops Mirror\" and give it the same description as the Development channel.",
+  "plen": 129,
+  "calls": [
+   4,
+   4,
+   4
+  ],
+  "calls_med": 4,
+  "reads_med": 3,
+  "fid": [
+   1.0,
+   1.0,
+   1.0
+  ],
+  "fid_ok": true
+ },
+ {
+  "variant": "deep_full",
+  "prompt": "In the TechCorp Solutions team, create a channel called \"Ops Mirror\" configured just like the Development channel.",
+  "plen": 114,
+  "calls": [
+   4,
+   4,
+   4
+  ],
+  "calls_med": 4,
+  "reads_med": 3,
+  "fid": [
+   0.0,
+   1.0,
+   1.0
+  ],
+  "fid_ok": false
+ }
+]

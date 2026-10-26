@@ -1,0 +1,6 @@
+{
+ "name": "environment_provisioning_verification_status",
+ "description": "Reports the current environment-provisioning verification status from its consistency report. It returns complete as true when pending is zero and otherwise reports the pending amount as remaining. Finalizing before complete is reported risks using a partially provisioned development environment.",
+ "handler_src": "def handle(args, state, ds):\n    report = ds.consistency_report()\n    if report[\"pending\"] == 0:\n        return {\"complete\": True, \"remaining\": 0}\n    return {\"complete\": False, \"remaining\": report[\"pending\"]}",
+ "driver": "Provision the development environment and confirm verification has finished before considering the workspace ready for use."
+}

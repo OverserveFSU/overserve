@@ -1,0 +1,66 @@
+[
+  {
+    "name": "check_channel_hygiene",
+    "niche": "update_channel|4tool+",
+    "screen_amp": 0.938,
+    "screen_cap": 0.5,
+    "cyc": 0.701,
+    "prompt_median": 0.85,
+    "prompt_frac_ge70": 1.0,
+    "prompt_range": [
+      0.75,
+      0.9
+    ],
+    "tool_median": 0.95,
+    "tool_min": 0.95,
+    "verified_corner": true
+  },
+  {
+    "name": "verify_description_freshness",
+    "niche": "update_channel|3tool",
+    "screen_amp": 0.838,
+    "screen_cap": 0.33,
+    "cyc": 0.644,
+    "prompt_median": 0.7,
+    "prompt_frac_ge70": 0.73,
+    "prompt_range": [
+      0.5,
+      0.85
+    ],
+    "tool_median": 0.95,
+    "tool_min": 0.95,
+    "verified_corner": true
+  },
+  {
+    "name": "verify_onboarding_bundle",
+    "niche": "mixedWrite|4tool+",
+    "screen_amp": 0.825,
+    "screen_cap": 0.17,
+    "cyc": 0.783,
+    "prompt_median": 0.75,
+    "prompt_frac_ge70": 0.8,
+    "prompt_range": [
+      0.6,
+      0.85
+    ],
+    "tool_median": 0.95,
+    "tool_min": 0.9,
+    "verified_corner": true
+  },
+  {
+    "name": "verify_channel_summary",
+    "niche": "mixedWrite|4tool+",
+    "screen_amp": 0.933,
+    "screen_cap": 0.83,
+    "cyc": 0.727,
+    "prompt_median": 0.7,
+    "prompt_frac_ge70": 0.73,
+    "prompt_range": [
+      0.5,
+      0.85
+    ],
+    "tool_median": 0.95,
+    "tool_min": 0.95,
+    "verified_corner": true
+  }
+]

@@ -1,0 +1,103 @@
+{
+  "cycles": [
+    {
+      "name": "Channel Archive vs Active Messaging Cycle",
+      "write_tools": [
+        "archive_channel",
+        "send_channel_message"
+      ],
+      "read_tools": [
+        "list_channels",
+        "list_channel_messages"
+      ],
+      "requirements": [
+        "Channel must be archived to comply with data retention policy",
+        "Channel must have active messaging for ongoing project coordination"
+      ],
+      "competing_invariant": "Archiving a channel prevents new messages from being sent, while sending messages requires the channel to be in active (non-archived) state",
+      "convergent_move": "none",
+      "distinct_tool_estimate": 4,
+      "stealth": 0.9,
+      "task_clause": "Ensure the project channel is properly archived for compliance while maintaining active communication for the ongoing initiative."
+    },
+    {
+      "name": "Team Deletion vs Member Management Cycle",
+      "write_tools": [
+        "delete_team",
+        "add_team_member"
+      ],
+      "read_tools": [
+        "list_teams",
+        "list_team_members"
+      ],
+      "requirements": [
+        "Team must be deleted to clean up obsolete organizational structures",
+        "Team must have current members added for active collaboration"
+      ],
+      "competing_invariant": "Deleting a team removes all members and makes the team non-existent, while adding members requires the team to exist",
+      "convergent_move": "none",
+      "distinct_tool_estimate": 4,
+      "stealth": 0.8,
+      "task_clause": "Clean up the obsolete team structure while ensuring all current project members have proper access."
+    },
+    {
+      "name": "User Deletion vs Chat Creation Cycle",
+      "write_tools": [
+        "delete_user",
+        "create_chat"
+      ],
+      "read_tools": [
+        "list_users",
+        "list_chats"
+      ],
+      "requirements": [
+        "User account must be deleted for offboarding compliance",
+        "Chat must be created with the user for knowledge transfer"
+      ],
+      "competing_invariant": "Deleting a user removes their ability to participate in new chats, while creating a chat requires the user to exist and be available",
+      "convergent_move": "none",
+      "distinct_tool_estimate": 4,
+      "stealth": 0.85,
+      "task_clause": "Complete the user offboarding process while establishing necessary communication channels for transition."
+    },
+    {
+      "name": "Message Deletion vs Reaction Management Cycle",
+      "write_tools": [
+        "soft_delete_chat_message",
+        "set_chat_message_reaction"
+      ],
+      "read_tools": [
+        "list_chat_messages"
+      ],
+      "requirements": [
+        "Message must be deleted for content moderation compliance",
+        "Message must have reactions set for engagement tracking"
+      ],
+      "competing_invariant": "Soft deleting a message removes its content and makes it unavailable for reactions, while setting reactions requires the message to be active and visible",
+      "convergent_move": "undo_soft_delete_chat_message: would restore message but violate moderation requirement",
+      "distinct_tool_estimate": 3,
+      "stealth": 0.7,
+      "task_clause": "Moderate inappropriate content while maintaining engagement metrics for the conversation."
+    },
+    {
+      "name": "Virtual Event Cancellation vs Publication Cycle",
+      "write_tools": [
+        "cancel_virtual_event_webinar",
+        "publish_virtual_event_webinar"
+      ],
+      "read_tools": [
+        "list_virtual_event_webinars",
+        "get_virtual_event_webinar"
+      ],
+      "requirements": [
+        "Webinar must be canceled due to speaker unavailability",
+        "Webinar must be published to make it visible to registered audience"
+      ],
+      "competing_invariant": "Canceling a webinar sets its status to canceled permanently and makes it unavailable, while publishing requires the webinar to be in draft mode and available for audience access",
+      "convergent_move": "none",
+      "distinct_tool_estimate": 4,
+      "stealth": 0.9,
+      "task_clause": "Handle the speaker scheduling conflict while ensuring the webinar reaches its intended audience."
+    }
+  ]
+}

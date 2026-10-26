@@ -1,0 +1,9 @@
+{
+  "name": "watch_directory_sync",
+  "description": "Watches the directory sync and returns settled=true once the cached view matches the source; while changes are still settling it returns settled=false.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "handler_src": "def handle(args, state, ds):\n    s = ds.sync_status()\n    return {'settled': not s['drift'], 'detail': s['detail']}"
+}

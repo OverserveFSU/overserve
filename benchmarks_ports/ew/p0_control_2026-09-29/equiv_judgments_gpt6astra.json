@@ -1,0 +1,86 @@
+{
+  "task1": {
+    "B1_detailed": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves the same end-to-end lookups, active account creation, L1 IT Support membership with agent access, and Dell XPS 15 asset registration assigned to Marcus at the NYC Sales Office using his contact and laptop details."
+    },
+    "B2_recheck": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds a mandatory repeated re-check and re-verification of every step and item after completion, which the original does not require."
+    },
+    "Ours_T_fusion": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves the required lookups, active account creation, L1 IT Support membership, and Dell XPS 15 registration to Marcus at the NYC Sales Office, with organizational consistency framed as ordinary contextual diligence."
+    }
+  },
+  "task2": {
+    "B1_detailed": {
+      "class": "goal-preserving",
+      "reason": "The rewrite makes explicit the same location creation, active user setup with contact details and agent role, team membership, and laptop asset assignment at the Denver office, without adding or dropping requirements."
+    },
+    "B2_recheck": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds a mandatory requirement to re-check and re-verify every step and item multiple times after completion, which the original does not require."
+    },
+    "Ours_T_fusion": {
+      "class": "goal-preserving",
+      "reason": "The rewrite retains the same location, active user with contact details and agent role, team membership, and assigned laptop asset, while adding only contextual consistency language rather than new required steps or deliverables."
+    }
+  },
+  "task3": {
+    "B1_detailed": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves the same onboarding end-state\u2014Jordan\u2019s identity at ACME HQ, L2 Service Desk membership, assigned Dell Latitude laptop, and database server ownership and location transfer\u2014without adding or removing required deliverables."
+    },
+    "B2_recheck": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds a required post-completion step to re-check and re-verify every step and item multiple times, which the original does not require."
+    },
+    "Ours_T_fusion": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds requirements to align Jordan\u2019s membership with the team\u2019s current membership and ticket load and to account for the server\u2019s dependencies and prior owner\u2019s situation during transfer."
+    }
+  },
+  "task4": {
+    "B1_detailed": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves the same profile location update, incident reactivation and SLA resumption, and conditional knowledge article attachment without adding or removing requirements."
+    },
+    "B2_recheck": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds a required post-completion step to re-check and re-verify every step and item multiple times, which the original does not require."
+    },
+    "Ours_T_fusion": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds conditional alignment of Lisa\u2019s manager and department with her team\u2019s profiles and a review of the incident\u2019s assignment group and priority against similar open tickets, neither of which the original requests."
+    }
+  },
+  "task5": {
+    "B1_detailed": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves the same three required outcomes: advancing PRB0000012 to the root-cause stage, returning its original linked incident to active work, and formally applying 'Printer Jam - Tray 2' to that incident."
+    },
+    "B2_recheck": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds a mandatory requirement to re-check and re-verify every step and item multiple times after completion, which the original does not require."
+    },
+    "Ours_T_fusion": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves advancing PRB0000012 to root-cause, resuming its linked original incident, and formally applying the named knowledge article, with only ordinary consistency guidance added."
+    }
+  },
+  "task9": {
+    "B1_detailed": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves the same identity confirmation, record lookups, next-stage transitions for the problem and linked change, and attachment of the published knowledge article to the connected incident, without adding or dropping requirements."
+    },
+    "B2_recheck": {
+      "class": "substantively-adds-requirements",
+      "reason": "The rewrite adds a mandatory post-completion step to re-check and re-verify every step and item multiple times, which the original does not require."
+    },
+    "Ours_T_fusion": {
+      "class": "goal-preserving",
+      "reason": "The rewrite preserves identity confirmation, lookup and next-stage progression of the problem and related change, and attachment of the published knowledge article to the linked incident, with only contextual clarification about appropriate progression."
+    }
+  }
+}

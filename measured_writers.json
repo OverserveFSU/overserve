@@ -1,0 +1,818 @@
+{
+ "create_channel": {
+  "op": "CREATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "exists",
+    [
+     "Channel",
+     "?new_channel"
+    ],
+    true
+   ]
+  ],
+  "obj": "Team",
+  "evidence": {
+   "effect": [
+    "INSERT channels (89->90)"
+   ],
+   "guard_observed": [
+    "Invalid request: 5 validation errors for ChannelCreateRequest members.0.roles Field required [type=missing, input_value={'<ID>': '<ID>'}, input_type=dict] For f"
+   ]
+  },
+  "measured_ok": true
+ },
+ "update_channel": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "attr",
+    [
+     "?c",
+     "description"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "channels.description attr 'General discussions '->'measured new descrip'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "add_channel_member": {
+  "op": "CREATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "User",
+     "?u"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "exists",
+    [
+     "Membership",
+     "?new_membership"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "INSERT channel_members (191->192)"
+   ],
+   "guard_observed": [
+    "User '<ID>' is already a member of this channel",
+    "Invalid role '<ID>'. Per Microsoft Graph API specification, roles can only be empty array [] or ['owner'<ID>'member' role.",
+    "Internal server error: (sqlite3.OperationalError) unable to open database file [SQL: INSERT INTO channel_members (channel_id, user_id, roles, display_name, emai"
+   ]
+  },
+  "measured_ok": true
+ },
+ "archive_channel": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "archived",
+    [
+     "?c"
+    ],
+    false
+   ]
+  ],
+  "effect": [
+   [
+    "archived",
+    [
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "channels.is_archived toggle 0->1"
+   ]
+  },
+  "measured_ok": true
+ },
+ "provision_channel_email": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "email",
+    [
+     "?c"
+    ],
+    false
+   ]
+  ],
+  "effect": [
+   [
+    "email",
+    [
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "channels.email toggle None->'general.team_tec@techcorp-001.teams.ms'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "send_channel_message": {
+  "op": "CREATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "exists",
+    [
+     "Message",
+     "?new_message"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "INSERT channel_messages (166->167)"
+   ],
+   "guard_observed": [
+    "Validation errors: - contentType: contentType is required"
+   ]
+  },
+  "measured_ok": true
+ },
+ "soft_delete_channel_message": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Message",
+     "?m"
+    ],
+    true
+   ],
+   [
+    "deleted",
+    [
+     "?m"
+    ],
+    false
+   ]
+  ],
+  "effect": [
+   [
+    "deleted",
+    [
+     "?m"
+    ],
+    true
+   ]
+  ],
+  "obj": "Message",
+  "evidence": {
+   "effect": [
+    "channel_messages.deleted_datetime toggle None->'2026-09-03 02:44:17.855986'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "undo_soft_delete_channel_message": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Message",
+     "?m"
+    ],
+    true
+   ],
+   [
+    "deleted",
+    [
+     "?m"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "deleted",
+    [
+     "?m"
+    ],
+    false
+   ]
+  ],
+  "obj": "Message",
+  "evidence": {
+   "effect": [
+    "channel_messages.deleted_datetime toggle '2026-09-03 02:44:19.817055'->None"
+   ]
+  },
+  "measured_ok": true
+ },
+ "create_teamwork_tag": {
+  "op": "CREATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "exists",
+    [
+     "Tag",
+     "?new_tag"
+    ],
+    true
+   ]
+  ],
+  "obj": "Team",
+  "evidence": {
+   "effect": [
+    "INSERT teamwork_tags (125->126)"
+   ],
+   "guard_observed": [
+    "Failed to create teamwork tag"
+   ]
+  },
+  "measured_ok": true
+ },
+ "add_tabs_to_channels": {
+  "op": "CREATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "exists",
+    [
+     "Tab",
+     "?new_tab"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "INSERT teams_channel_tabs (169->170)"
+   ],
+   "guard_observed": [
+    "Teams app '<ID>' not found in organization app catalog. The app must be preinstalled in the team.",
+    "teamsApp_odata_bind or teamsAppId is required in request body"
+   ]
+  },
+  "measured_ok": true
+ },
+ "remove_team_member": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Membership",
+     "?mem"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "Team",
+  "evidence": {},
+  "measured_ok": true
+ },
+ "update_user": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "User",
+     "?u"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "User",
+  "evidence": {},
+  "measured_ok": true
+ },
+ "update_group": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "Group",
+     "?g"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "Group",
+  "evidence": {},
+  "measured_ok": true
+ },
+ "create_chat": {
+  "op": "CREATE",
+  "guard": [],
+  "effect": [
+   [
+    "exists",
+    [
+     "Chat",
+     "?new_chat"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "ChatMember",
+     "?new_chatmember"
+    ],
+    true
+   ]
+  ],
+  "obj": "Chat",
+  "evidence": {
+   "effect": [
+    "INSERT chats (51->52)",
+    "INSERT chat_members (150->152)"
+   ],
+   "guard_observed": [
+    "{ \"error\": { \"code\": \"BadRequest\", \"message\": \"topic is required for group chats\", \"innerError\": { \"request-id\": \"<HEX>-23dd-447d-9bcc-<HEX>\", \"date\": \"2026-08-"
+   ]
+  },
+  "measured_ok": true
+ },
+ "update_channel_tab": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "attr",
+    [
+     "?x",
+     "display_name"
+    ],
+    true
+   ]
+  ],
+  "obj": "Channel",
+  "evidence": {
+   "effect": [
+    "teams_channel_tabs.display_name attr 'Team Notebook'->'M_tab_renamed'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "delete_channel_tab": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "Channel",
+  "evidence": {},
+  "measured_ok": true
+ },
+ "update_channel_message": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Message",
+     "?m"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "Message",
+  "evidence": {},
+  "measured_ok": true
+ },
+ "set_channel_message_reaction": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Message",
+     "?m"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "attr",
+    [
+     "?m",
+     "reactions_json"
+    ],
+    true
+   ]
+  ],
+  "obj": "Message",
+  "evidence": {
+   "effect": [
+    "channel_messages.reactions_json attr '[]'->'[{\"reactionType\": \"l'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "unset_channel_message_reaction": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Channel",
+     "?c"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "Message",
+     "?m"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "attr",
+    [
+     "?m",
+     "reactions_json"
+    ],
+    true
+   ]
+  ],
+  "obj": "Message",
+  "evidence": {
+   "effect": [
+    "channel_messages.reactions_json attr '[{\"reactionType\": \"l'->'[]'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "update_team": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "attr",
+    [
+     "?x",
+     "description"
+    ],
+    true
+   ]
+  ],
+  "obj": "Team",
+  "evidence": {
+   "effect": [
+    "teams.description attr 'Main collaboration t'->'measured team descri'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "update_teamwork_tag": {
+  "op": "UPDATE",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ]
+  ],
+  "effect": [
+   [
+    "attr",
+    [
+     "?x",
+     "display_name"
+    ],
+    true
+   ]
+  ],
+  "obj": "Team",
+  "evidence": {
+   "effect": [
+    "teamwork_tags.display_name attr 'Engineering'->'M_tag_renamed'"
+   ]
+  },
+  "measured_ok": true
+ },
+ "add_team_member": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "Team",
+     "?t"
+    ],
+    true
+   ],
+   [
+    "exists",
+    [
+     "User",
+     "?u"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "Team",
+  "evidence": {
+   "guard_observed": [
+    "User '<ID>' not found"
+   ]
+  },
+  "measured_ok": true
+ },
+ "add_group_owner": {
+  "op": "READ",
+  "guard": [
+   [
+    "exists",
+    [
+     "Group",
+     "?g"
+    ],
+    true
+   ]
+  ],
+  "effect": [],
+  "obj": "Group",
+  "evidence": {},
+  "measured_ok": true
+ }
+}

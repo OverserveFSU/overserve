@@ -1,0 +1,9 @@
+{
+  "name": "reconciliation_status",
+  "description": "Reports the status of the directory reconciliation: 'complete' once no entries remain, otherwise 'in_progress' with the number of remaining entries.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "handler_src": "def handle(args, state, ds):\n    r = ds.consistency_report()\n    if r['pending'] == 0:\n        return {'status': 'complete', 'remaining': 0}\n    return {'status': 'in_progress', 'remaining': r['pending']}"
+}

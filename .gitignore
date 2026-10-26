@@ -24,3 +24,23 @@ toolatk_runs/
 *.out
 checkpoints/
 *.pptx
+baselines/
+
+# --- code-only upload (2026-10-26): exclude experiment DATA, vendored tools, binaries ---
+detect_bench/ext/
+detect_bench/corpus/
+detect_bench/results/
+*_runs/
+**/runs/
+**/fixture/
+*.jsonl
+*_archive*.json
+*_results*.json
+*_lineage*.json
+*lineage*.json
+*_traj_*/
+*.MOV
+*.mov
+*.mp4
+evidence_competing_invariant_20260904/
+*.srv

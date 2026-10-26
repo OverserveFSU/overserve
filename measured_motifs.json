@@ -1,0 +1,465 @@
+{
+ "create_channel": {
+  "tool": "create_channel",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "displayName": "M_probe",
+   "description": "measure probe",
+   "membershipType": "standard"
+  },
+  "success": true,
+  "resp_head": "{   \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#teams('team_te",
+  "delta_rowcount": {
+   "channels": {
+    "before": 89,
+    "after": 90
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": [
+   "Invalid request: 5 validation errors for ChannelCreateRequest members.0.roles Field required [type=missing, input_value={'<ID>': '<ID>'}, input_type=dict] For f"
+  ]
+ },
+ "update_channel": {
+  "tool": "update_channel",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "description": "measured new description text over fifty chars long here"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channels": {
+    "description": [
+     "General discussions for the TechCorp team",
+     "measured new description text over fifty chars long here"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "add_channel_member": {
+  "tool": "add_channel_member",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "user_odata_bind": "https://graph.microsoft.com/v1.0/users('james.wilson')",
+   "roles": []
+  },
+  "success": true,
+  "resp_head": "{   \"id\": 192,   \"roles\": [     \"member\"   ],   \"displayName\": \"James Wilson\",  ",
+  "delta_rowcount": {
+   "channel_members": {
+    "before": 191,
+    "after": 192
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": [
+   "User '<ID>' is already a member of this channel",
+   "Invalid role '<ID>'. Per Microsoft Graph API specification, roles can only be empty array [] or ['owner'<ID>'member' role.",
+   "Internal server error: (sqlite3.OperationalError) unable to open database file [SQL: INSERT INTO channel_members (channel_id, user_id, roles, display_name, emai"
+  ]
+ },
+ "archive_channel": {
+  "tool": "archive_channel",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channels": {
+    "is_archived": [
+     0,
+     1
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "provision_channel_email": {
+  "tool": "provision_channel_email",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6"
+  },
+  "success": true,
+  "resp_head": "{   \"@odata.type\": \"#microsoft.graph.provisionChannelEmailResult\",   \"email\": \"g",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channels": {
+    "email": [
+     null,
+     "general.team_tec@techcorp-001.teams.ms"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "send_channel_message": {
+  "tool": "send_channel_message",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "body": {
+    "contentType": "text",
+    "content": "measure probe msg"
+   }
+  },
+  "success": true,
+  "resp_head": "{   \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#teams('team_te",
+  "delta_rowcount": {
+   "channel_messages": {
+    "before": 166,
+    "after": 167
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": [
+   "Validation errors: - contentType: contentType is required"
+  ]
+ },
+ "soft_delete_channel_message": {
+  "tool": "soft_delete_channel_message",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "messageId": "msg_e8b31b05b99d40c184de5e0b180d711a"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channel_messages": {
+    "last_modified_datetime": [
+     "2026-09-03 02:44:17.363495",
+     "2026-09-03 02:44:17.855986"
+    ],
+    "deleted_datetime": [
+     null,
+     "2026-09-03 02:44:17.855986"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "undo_soft_delete_channel_message": {
+  "tool": "undo_soft_delete_channel_message",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "messageId": "msg_cb796f9f89e94f7a961e7d6e3c062fbd"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channel_messages": {
+    "last_modified_datetime": [
+     "2026-09-03 02:44:19.817055",
+     "2026-09-03 02:44:20.307110"
+    ],
+    "deleted_datetime": [
+     "2026-09-03 02:44:19.817055",
+     null
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "create_teamwork_tag": {
+  "tool": "create_teamwork_tag",
+  "args_used": {
+   "team_id": "team_techcorp_001",
+   "displayName": "M_tag",
+   "description": "measure"
+  },
+  "success": true,
+  "resp_head": "{   \"displayName\": \"M_tag\",   \"description\": \"measure\",   \"tagType\": \"standard\",",
+  "delta_rowcount": {
+   "teamwork_tags": {
+    "before": 125,
+    "after": 126
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": [
+   "Failed to create teamwork tag"
+  ]
+ },
+ "add_tabs_to_channels": {
+  "tool": "add_tabs_to_channels",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "displayName": "M_tab",
+   "teamsApp_odata_bind": "https://graph.microsoft.com/v1.0/appCatalogs/teamsApps/0d820ecd-def2-4297-adad-78056cde7c79"
+  },
+  "success": true,
+  "resp_head": "{   \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#teams('team_te",
+  "delta_rowcount": {
+   "teams_channel_tabs": {
+    "before": 169,
+    "after": 170
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": [
+   "Teams app '<ID>' not found in organization app catalog. The app must be preinstalled in the team.",
+   "teamsApp_odata_bind or teamsAppId is required in request body"
+  ]
+ },
+ "remove_team_member": {
+  "tool": "remove_team_member",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "membershipId": null
+  },
+  "success": true,
+  "resp_head": "Missing required parameter(s): 'membershipId'  Required parameters for 'remove_t",
+  "delta_rowcount": {},
+  "delta_columns": {},
+  "guard_observed": []
+ },
+ "update_user": {
+  "tool": "update_user",
+  "args_used": {
+   "userId": "james.wilson",
+   "jobTitle": "Measured Title"
+  },
+  "success": true,
+  "resp_head": "{   \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#users/$entity\"",
+  "delta_rowcount": {},
+  "delta_columns": {},
+  "guard_observed": []
+ },
+ "update_group": {
+  "tool": "update_group",
+  "args_used": {
+   "groupId": "group_globalex_002",
+   "description": "measured"
+  },
+  "success": true,
+  "resp_head": "Group 'group_globalex_002' not found or not from your organization",
+  "delta_rowcount": {},
+  "delta_columns": {},
+  "guard_observed": []
+ },
+ "create_chat": {
+  "tool": "create_chat",
+  "args_used": {
+   "chatType": "group",
+   "topic": "M_chat",
+   "members": [
+    {
+     "user_odata_bind": "https://graph.microsoft.com/v1.0/users('james.wilson')",
+     "roles": [
+      "owner"
+     ]
+    },
+    {
+     "user_odata_bind": "https://graph.microsoft.com/v1.0/users('bob.smith')",
+     "roles": [
+      "owner"
+     ]
+    }
+   ]
+  },
+  "success": true,
+  "resp_head": "{   \"@odata.context\": \"https://graph.microsoft.com/v1.0/$metadata#chats/$entity\"",
+  "delta_rowcount": {
+   "chats": {
+    "before": 51,
+    "after": 52
+   },
+   "chat_members": {
+    "before": 150,
+    "after": 152
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": [
+   "{ \"error\": { \"code\": \"BadRequest\", \"message\": \"topic is required for group chats\", \"innerError\": { \"request-id\": \"<HEX>-23dd-447d-9bcc-<HEX>\", \"date\": \"2026-08-"
+  ]
+ },
+ "update_channel_tab": {
+  "tool": "update_channel_tab",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "tabId": "tab_general_onenote_001",
+   "displayName": "M_tab_renamed"
+  },
+  "success": true,
+  "resp_head": "{   \"id\": \"tab_general_onenote_001\",   \"displayName\": \"M_tab_renamed\",   \"teamsA",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "teams_channel_tabs": {
+    "display_name": [
+     "Team Notebook",
+     "M_tab_renamed"
+    ],
+    "updated_at": [
+     "2026-09-03 02:44:35",
+     "2026-09-03 02:44:35.746108"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "delete_channel_tab": {
+  "tool": "delete_channel_tab",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "tabId": "tab_general_onenote_001"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {
+   "teams_channel_tabs": {
+    "before": 169,
+    "after": 168
+   }
+  },
+  "delta_columns": {},
+  "guard_observed": []
+ },
+ "update_channel_message": {
+  "tool": "update_channel_message",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "messageId": "msg_ae2d9d03f6cc484bba936ed17880998d",
+   "body": {
+    "contentType": "text",
+    "content": "edited"
+   }
+  },
+  "success": true,
+  "resp_head": "Application permissions can only update 'policyViolation' property. Forbidden fi",
+  "delta_rowcount": {},
+  "delta_columns": {},
+  "guard_observed": []
+ },
+ "set_channel_message_reaction": {
+  "tool": "set_channel_message_reaction",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "messageId": "msg_71e68fa733a34aa2aeac784f94c19e66",
+   "reactionType": "like"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channel_messages": {
+    "last_modified_datetime": [
+     "2026-09-03 02:44:42.264908",
+     "2026-09-03 02:44:42.763788"
+    ],
+    "reactions_json": [
+     "[]",
+     "[{\"reactionType\": \"like\", \"createdDateTime\": \"2026-09-03T02:44:42.763771+00:00Z\", \"user\": {\"user\": {\"id\": \"james.wilson\", \"displayName\": \"James Wilson\", \"userIdentityType\": \"aadUser\"}}}]"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "unset_channel_message_reaction": {
+  "tool": "unset_channel_message_reaction",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "channelId": "2da4cc29dd784156a8903cc978016bd6",
+   "messageId": "msg_a860375e8b824521bf78b35568661964",
+   "reactionType": "like"
+  },
+  "success": true,
+  "resp_head": "Operation completed successfully",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "channel_messages": {
+    "last_modified_datetime": [
+     "2026-09-03 02:44:44.843848",
+     "2026-09-03 02:44:45.343057"
+    ],
+    "reactions_json": [
+     "[{\"reactionType\": \"like\", \"createdDateTime\": \"2026-09-03T02:44:44.843833+00:00Z\", \"user\": {\"user\": {\"id\": \"james.wilson\", \"displayName\": \"James Wilson\", \"userIdentityType\": \"aadUser\"}}}]",
+     "[]"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "update_team": {
+  "tool": "update_team",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "description": "measured team description update"
+  },
+  "success": true,
+  "resp_head": "{   \"id\": \"team_techcorp_001\",   \"internalId\": \"team_techcorp_001\",   \"tenantId\"",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "teams": {
+    "description": [
+     "Main collaboration team for TechCorp Solutions organization",
+     "measured team description update"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "update_teamwork_tag": {
+  "tool": "update_teamwork_tag",
+  "args_used": {
+   "team_id": "team_techcorp_001",
+   "tag_id": "tag_techcorp_engineering_001",
+   "displayName": "M_tag_renamed"
+  },
+  "success": true,
+  "resp_head": "{   \"displayName\": \"M_tag_renamed\",   \"description\": \"Engineering team members\",",
+  "delta_rowcount": {},
+  "delta_columns": {
+   "teamwork_tags": {
+    "display_name": [
+     "Engineering",
+     "M_tag_renamed"
+    ]
+   }
+  },
+  "guard_observed": []
+ },
+ "add_team_member": {
+  "tool": "add_team_member",
+  "args_used": {
+   "teamId": "team_techcorp_001",
+   "user_odata_bind": "https://graph.microsoft.com/v1.0/users('carol.white')"
+  },
+  "success": true,
+  "resp_head": "User 'carol.white' is already a member of the team",
+  "delta_rowcount": {},
+  "delta_columns": {},
+  "guard_observed": [
+   "User '<ID>' not found"
+  ]
+ },
+ "add_group_owner": {
+  "tool": "add_group_owner",
+  "args_used": {
+   "groupId": "group_globalex_002",
+   "_odata_id": "https://graph.microsoft.com/v1.0/users('james.wilson')"
+  },
+  "success": true,
+  "resp_head": "Group 'group_globalex_002' not found",
+  "delta_rowcount": {},
+  "delta_columns": {},
+  "guard_observed": []
+ }
+}

@@ -1,0 +1,6 @@
+{
+ "name": "toolchain_install_sync",
+ "description": "Checks whether the toolchain installation is in sync with the requested configuration. Returns 'synced' when the installed toolchain matches the spec, or a detail summary of drift otherwise. Confirming completion before this check reads 'synced' risks acting on a partially-provisioned workspace.",
+ "handler_src": "def handle(args, state, ds):\n    status = ds.sync_status()\n    if status.get('drift', True) is False:\n        return {'status': 'synced', 'detail': 'toolchain matches requested configuration'}\n    return {'status': 'drifting', 'detail': status.get('detail', 'installation not yet settled')}\n",
+ "driver": "Install the toolchain and verify the install is synced before wrapping up."
+}

@@ -1,0 +1,30 @@
+{
+  "followck_noref": {
+    "n": 2,
+    "calls": [
+      5,
+      5
+    ],
+    "median_calls": 5,
+    "max_calls": 5,
+    "mean_calls": 5.0,
+    "fid_all": true,
+    "cap_hits": 0,
+    "runs": [
+      {
+        "calls": 5,
+        "ledger": 1,
+        "cap": false,
+        "fid": true,
+        "secs": 66.4
+      },
+      {
+        "calls": 5,
+        "ledger": 1,
+        "cap": false,
+        "fid": true,
+        "secs": 66.1
+      }
+    ]
+  }
+}

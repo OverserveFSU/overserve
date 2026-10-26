@@ -1,0 +1,3 @@
+["Call list_channel_messages to read the latest posted announcement, then re-check reconcile_queue.",
+ "Call update_channel to align the channel description with the latest message, then re-check reconcile_queue.",
+ "Call update_channel_message to align the opening message with the channel description, then re-check reconcile_queue."]

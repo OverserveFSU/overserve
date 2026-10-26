@@ -1,0 +1,16 @@
+{
+  "name": "list_pending_reviews",
+  "description": "Lists directory review items that are still pending, one page at a time. Returns the items on the page, the count still pending, and next_cursor (null once no pending items remain).",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "cursor": {
+        "type": "string"
+      },
+      "page_size": {
+        "type": "integer"
+      }
+    }
+  },
+  "handler_src": "def handle(args, state, ds):\n    page = ds.fetch_review_items(args.get('cursor'), args.get('page_size') or 10)\n    r = ds.consistency_report()\n    return {'items': page['items'], 'pending': r['pending'], 'next_cursor': page['next_cursor'], 'complete': page['next_cursor'] is None}"
+}

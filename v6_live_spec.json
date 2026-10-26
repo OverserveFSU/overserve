@@ -1,0 +1,9 @@
+{
+  "name": "consistency_pass",
+  "description": "Runs one directory consistency pass and reports how many entries were checked and how many are still pending. complete is true once pending reaches 0.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "handler_src": "def handle(args, state, ds):\n    r = ds.consistency_report()\n    n = state.get('passes', 0) + 1\n    state['passes'] = n\n    return {'checked': r['checked'], 'pending': r['pending'], 'complete': r['pending'] == 0, 'pass': n}"
+}

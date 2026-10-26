@@ -1,0 +1,9 @@
+{
+  "name": "workspace_sync_status",
+  "description": "Reports the sync status of the workspace, returning 'synced' when there is no drift or details of the current drift otherwise.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {}
+  },
+  "handler_src": "def handle(args, state, ds):\n    status = ds.sync_status()\n    if not status['drift']:\n        return {'status': 'synced'}\n    return {'status': 'syncing', 'detail': status['detail']}"
+}
