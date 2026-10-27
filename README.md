@@ -30,22 +30,34 @@ amplifies. See the paper for details.
 ## Repo layout
 
 ```
-overserve/                 # framework package: llm, config, fusion, score, seed_iter, large_scale, token_measure
-scripts/                   # package entry points (run_large, run_seed_iter, run_token_measure)
-toolatk_search_v{5,7,8}.py # current search engine (writer + judges + corner selection)
-toolatk_run.py             # core victim runner
-recon_to_search.py         # recon-seeded end-to-end search (tool_list -> working attack)
-recon_analyzer.py          # derive (gate, driver) candidates from a service's tool list
-mcp_attack_server_v7.py    # churn MCP status server (ChurnDir / ConcurrentChurnDir)
-real_churn_backend.py      # genuine concurrent-update backend (P0-b)
-search_eog_*.py / eog_*    # EnterpriseOps-Gym pipeline (headline 40x case)
-benchmarks_ports/          # adapters + search + guards for the 9 benchmarks + CLI
-  appworld/ ew/ mcpmark/ workbench/ tac/ toolathlon/ browsecomp/ infra/
-detect_bench/              # 5 industrial scanners + 4 research detectors (DCI, Connor, ...)
-baselines/toolslot/        # A2M / LoopTrap / ours comparison harness (Table 2)
-standardized/              # standardized cap-protocol campaign runners + CAP_PROTOCOL.md
-run_p0{b,c}_*.py, p0d_*    # reviewer-rigor controls (real churn / prompt contrast / independent audit)
-eog_defense_test.py        # progress-authorized guard (defense)
+overserve/              # framework package (unchanged): llm, config, fusion, score, seed_iter, large_scale, token_measure
+src/
+  search/               # search engine: toolatk_search_v5/v7/v8, toolatk_run, toolatk_qd (+ task_synth, measure_effects deps)
+  recon/                # recon_to_search, recon_analyzer, recon_candidates*.json, gym_tool_schemas.json
+  attack_server/        # mcp_attack_server_v7 (+ v3), real_churn_backend, + their spec json
+benchmarks/             # per-benchmark ports: appworld/ ew/ mcpmark/ workbench/ tac/ toolathlon/ browsecomp/ infra/
+detectors/              # 5 industrial scanners + 4 research detectors (DCI, Connor, ...) + bedrock helpers
+baselines/toolslot/     # A2M / LoopTrap / ours comparison harness (Table 2)
+defense/                # eog_defense_test.py (progress-authorized guard)
+standardized/           # standardized cap-protocol campaign runners + CAP_PROTOCOL.md
+scripts/                # entry runners: search_eog_*, eog_campaign*, base_check_eog*, run_p0{b,c}*, p0d_*, resource_*, run_*.py/.sh
+data/                   # kept archive/spec json + seed_pool.json (package data)
+docs/                   # project docs (BENCHMARK_REFACTOR, TOOL_INVENTORY, CLEANUP_PLAN)
+overserve_paths.py      # sys.path bootstrap for the src/ layout (added to path by entry scripts)
+sitecustomize.py        # auto-loads the bootstrap when the repo root is on sys.path (e.g. PYTHONPATH=.)
+README.md
+```
+
+### How imports resolve
+
+The engine lives under `src/` but is imported by flat module name (e.g. `import toolatk_search_v5`).
+`overserve_paths.py` puts `src/search`, `src/recon` and `src/attack_server` (and the repo root, for the
+`overserve` package) on `sys.path`. Entry scripts self-bootstrap (they locate the repo root and
+`import overserve_paths`), so running them directly works. For a bare interpreter from the repo root,
+put the root on the path so `sitecustomize.py` loads the bootstrap:
+
+```bash
+PYTHONPATH=. python3 -c "import toolatk_search_v5"   # engine smoke test
 ```
 
 ## Running
@@ -54,30 +66,30 @@ eog_defense_test.py        # progress-authorized guard (defense)
 pip install -r requirements.txt
 
 # 1. End-to-end recon-seeded attack search on a service
-python recon_to_search.py                       # uses recon_candidates.json + the v8 machinery
+python src/recon/recon_to_search.py                   # (engine path set up automatically)
 
 # 2. EnterpriseOps-Gym headline case (churn server auto-launched)
-python search_eog_sonnet.py                      # or _nemotron / _llama4scout
+python scripts/search_eog_sonnet.py                   # or _nemotron / _llama4scout
 
 # 3. A benchmark port (e.g. MCPMark)
-python benchmarks_ports/mcpmark/search_v9_mcpmark.py
+python benchmarks/mcpmark/search_v9_mcpmark.py
 
 # 4. Detector screening of archived tools
-python detect_bench/run_scanners.py && python detect_bench/report.py
+python detectors/run_scanners.py && python detectors/report.py
 
 # 5. Baseline comparison (A2M / LoopTrap / ours)
 bash baselines/toolslot/run_pilot.sh
 
 # 6. Defense (progress-authorized guard)
-ATK_CAP=200 python eog_defense_test.py
+ATK_CAP=200 python defense/eog_defense_test.py
 
 # 7. Reviewer-rigor controls
-python run_p0b_realchurn.py       # real concurrent-churn backend
-python run_p0c_prompt_contrast.py # same-tool semantic-match prompt contrast
-python p0d_indep_audit.py         # independent (cross-model) audit
+python scripts/run_p0b_realchurn.py       # real concurrent-churn backend
+python scripts/run_p0c_prompt_contrast.py # same-tool semantic-match prompt contrast
+python scripts/p0d_indep_audit.py         # independent (cross-model) audit
 
 # 8. Standardized cap-protocol campaign
-python standardized/run_std.py    # see standardized/CAP_PROTOCOL.md
+python standardized/run_std.py            # see standardized/CAP_PROTOCOL.md
 ```
 
 ## Baselines note

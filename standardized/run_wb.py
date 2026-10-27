@@ -5,13 +5,23 @@ Emits D5 rows. WB rollout exposes no token usage -> naive/cached null.
 
 B_D~6 -> cap_op=18, cap_hr=120. clean baseline = base_calls (no driver/no churn tool).
 """
+# --- overserve path bootstrap (reorganized layout; see overserve_paths.py) ---
+import os as _ovp_os, sys as _ovp_sys
+_ovp_d = _ovp_os.path.dirname(_ovp_os.path.abspath(__file__))
+while _ovp_d != _ovp_os.path.dirname(_ovp_d) and not _ovp_os.path.exists(_ovp_os.path.join(_ovp_d, "overserve_paths.py")):
+    _ovp_d = _ovp_os.path.dirname(_ovp_d)
+if _ovp_d not in _ovp_sys.path:
+    _ovp_sys.path.insert(0, _ovp_d)
+import overserve_paths  # noqa
+# --- end overserve path bootstrap ---
 import os, sys, json, argparse
 
 OVERSERVE_DIR = "/home/ruiheng/aiagent/saas/overserve"
 WB_DIR = "/home/ruiheng/aiagent/saas/benchmarks/WorkBench"
-ARCH = "/home/ruiheng/aiagent/saas/overserve/benchmarks_ports/workbench/wb_sonnet_archive.json"
+ARCH = "/home/ruiheng/aiagent/saas/overserve/benchmarks/workbench/wb_sonnet_archive.json"
 OUT = "/home/ruiheng/aiagent/saas/overserve_paper/standardized/STANDARDIZED_RESULTS.jsonl"
 sys.path.insert(0, OVERSERVE_DIR); sys.path.insert(0, WB_DIR)
+sys.path.insert(0, os.path.join(OVERSERVE_DIR, "benchmarks", "workbench"))
 os.chdir(WB_DIR)
 import workbench_adapter as BK
 

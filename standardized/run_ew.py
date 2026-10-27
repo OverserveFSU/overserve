@@ -5,10 +5,19 @@ and judge stay GLM (OpenRouter). Emits D5 rows. EW rollout does not expose token
 
 B_D=8 -> cap_op=24, cap_hr=200. clean baseline = winner spec, NO driver, quiescent (pure base task).
 """
+# --- overserve path bootstrap (reorganized layout; see overserve_paths.py) ---
+import os as _ovp_os, sys as _ovp_sys
+_ovp_d = _ovp_os.path.dirname(_ovp_os.path.abspath(__file__))
+while _ovp_d != _ovp_os.path.dirname(_ovp_d) and not _ovp_os.path.exists(_ovp_os.path.join(_ovp_d, "overserve_paths.py")):
+    _ovp_d = _ovp_os.path.dirname(_ovp_d)
+if _ovp_d not in _ovp_sys.path:
+    _ovp_sys.path.insert(0, _ovp_d)
+import overserve_paths  # noqa
+# --- end overserve path bootstrap ---
 import os, sys, json, argparse
 from pathlib import Path
 
-EW = Path("/home/ruiheng/aiagent/saas/overserve/benchmarks_ports/ew")
+EW = Path("/home/ruiheng/aiagent/saas/overserve/benchmarks/ew")
 OUT = "/home/ruiheng/aiagent/saas/overserve_paper/standardized/STANDARDIZED_RESULTS.jsonl"
 sys.path.insert(0, os.environ.get("OVERSERVE_DIR", "/home/ruiheng/aiagent/saas/overserve"))
 sys.path.insert(0, str(EW))

@@ -7,13 +7,23 @@ wall-clock; we use a PRACTICAL ceiling (APPWORLD_CAP_HR, default 200) and mark a
 right-censored (documented deviation). clean baseline = winner spec quiescent (churn=0), NO driver.
 AppWorld rollout exposes no token usage -> naive/cached null.
 """
+# --- overserve path bootstrap (reorganized layout; see overserve_paths.py) ---
+import os as _ovp_os, sys as _ovp_sys
+_ovp_d = _ovp_os.path.dirname(_ovp_os.path.abspath(__file__))
+while _ovp_d != _ovp_os.path.dirname(_ovp_d) and not _ovp_os.path.exists(_ovp_os.path.join(_ovp_d, "overserve_paths.py")):
+    _ovp_d = _ovp_os.path.dirname(_ovp_d)
+if _ovp_d not in _ovp_sys.path:
+    _ovp_sys.path.insert(0, _ovp_d)
+import overserve_paths  # noqa
+# --- end overserve path bootstrap ---
 import os, sys, json, argparse, signal
 
 OVERSERVE_DIR = "/home/ruiheng/aiagent/saas/overserve"
 APPWORLD_DIR = "/home/ruiheng/aiagent/saas/benchmarks/AppWorld"
-ARCH = "/home/ruiheng/aiagent/saas/overserve/benchmarks_ports/appworld/archive_appworld_sonnet.json"
+ARCH = "/home/ruiheng/aiagent/saas/overserve/benchmarks/appworld/archive_appworld_sonnet.json"
 OUT = "/home/ruiheng/aiagent/saas/overserve_paper/standardized/STANDARDIZED_RESULTS.jsonl"
 sys.path.insert(0, OVERSERVE_DIR); sys.path.insert(0, APPWORLD_DIR)
+sys.path.insert(0, os.path.join(OVERSERVE_DIR, "benchmarks", "appworld"))
 os.chdir(APPWORLD_DIR)
 import appworld_adapter as A
 

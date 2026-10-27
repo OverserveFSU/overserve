@@ -54,9 +54,9 @@ baselines/A2M/datasets/
 *.abi3.so
 
 # --- code-only upload (2026-10-26): exclude experiment DATA, vendored tools, binaries ---
-detect_bench/ext/
-detect_bench/corpus/
-detect_bench/results/
+detectors/ext/
+detectors/corpus/
+detectors/results/
 *_runs/
 **/runs/
 **/fixture/
