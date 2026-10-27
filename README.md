@@ -60,6 +60,25 @@ put the root on the path so `sitecustomize.py` loads the bootstrap:
 PYTHONPATH=. python3 -c "import toolatk_search_v5"   # engine smoke test
 ```
 
+## Configuration
+
+**See [`SETUP.md`](SETUP.md) for the full setup: where to put API keys and which environment
+variables configure each model.** In short, three LLM roles are set via env vars (nothing is
+hard-coded — see `overserve/config.py`):
+
+- **Advanced LLMs** (attack writer / fusion / stealth judge) — OpenAI-compatible, OpenRouter by default:
+  set `OPENROUTER_API_KEY` (required), optionally `OPENROUTER_URL`, `OVERSERVE_GENERATOR_MODEL`,
+  `OVERSERVE_FUSION_MODEL`.
+- **Victim agent** (the SaaS agent under attack) — any OpenAI-compatible endpoint:
+  set `EOG_LLM_ENDPOINT`, `EOG_LLM_KEY`, `EOG_LLM_MODEL` (qwen: disable `enable_thinking`, or front it
+  with `detectors/llm_proxy.py`; deepseek/nemotron: standard parse + `max_output_tokens=16384`).
+- **Bedrock** (frontier victim Sonnet-5 / GPT judges) — via an OpenAI-compatible shim fed
+  `AWS_BEARER_TOKEN_BEDROCK` from a git-ignored token file.
+
+Secrets are read at runtime from git-ignored files (`key.txt`, `*_key.txt`, `amazonapi.txt`, …) —
+never commit them. Run knobs: `ATK_CAP`/`OVERSERVE_CAP`, `ATK_CHURN` (1=amplify, 0=quiescent audit),
+`ATK_BUDGET`, `REPS`, … (full table in `SETUP.md`).
+
 ## Running
 
 ```bash
