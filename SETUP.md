@@ -10,6 +10,24 @@ set to run the models**, then gives per-component run commands.
 
 ---
 
+## 0. From a fresh GitHub clone (quick path)
+
+A clone does **not** include any keys (all key files are git-ignored). Supply your own via a `.env`:
+
+```bash
+git clone https://github.com/Kunjoe7/overserve.git && cd overserve
+python3.12 -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+cp .env.example .env          # then edit .env and fill in your keys/endpoints (see §2)
+set -a; source .env; set +a   # load the env vars into your shell
+
+PYTHONPATH=. python3 -c "import toolatk_search_v8"   # smoke test (success = no output)
+```
+
+`.env` is git-ignored; only the `.env.example` template is committed. The rest of this document
+explains each variable. (You can also `export` the variables directly instead of using `.env`.)
+
 ## 1. Install
 
 ```bash

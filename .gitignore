@@ -71,3 +71,7 @@ detectors/results/
 *.mp4
 evidence_competing_invariant_20260904/
 *.srv
+
+# local env (never commit); template is .env.example
+.env
+!.env.example
